@@ -1,3 +1,4 @@
+build/
 
 # Created by https://www.gitignore.io/api/osx,node,sass,less,pydev,linux,bower,grunt,xcode,vagrant,eclipse,laravel,pycharm,angular,windows,android,netbeans,composer,textmate,intellij,phpstorm,webstorm,qtcreator,sublimetext,intellij+iml,visualstudio,androidstudio
 # Edit at https://www.gitignore.io/?templates=osx,node,sass,less,pydev,linux,bower,grunt,xcode,vagrant,eclipse,laravel,pycharm,angular,windows,android,netbeans,composer,textmate,intellij,phpstorm,webstorm,qtcreator,sublimetext,intellij+iml,visualstudio,androidstudio
