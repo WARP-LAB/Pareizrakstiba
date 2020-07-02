@@ -47,3 +47,11 @@ if [ -f $PBS ];
 then
   $PBS -flush
 fi
+
+# ================================
+# Open first time
+
+if [ $SYSVER_MIN -gt "4" ];
+then
+sudo -u $CONSOLE_USER /usr/bin/open -n ~/Library/Services/Pareizrakstiba.service
+fi
