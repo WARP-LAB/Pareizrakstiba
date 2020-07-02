@@ -1,0 +1,38 @@
+Pareizrakstība - Latviešu valodas pareizrakstības pārbaude macOS operētājsistēmai
+Pareizrakstiba - Latvian spellcheck for macOS operating system
+Copyright (C) 2008-2020 Reinis Adovičs a.k.a. kroko
+http://www.kroko.me
+code[AT]kroko.me
+
+Licenesed as
+GNU GENERAL PUBLIC LICENSE
+Version 2, June 1991
+https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html
+
+================================
+
+Using:
+
+1)
+Latviešu valodas affix fails lietošanai ar OpenOffice v.v. 2.4.1 un 3.x.x,
+LibreOffice u.c. aplikācijām, kas pareizrakstības pārbaudei izmanto HunSpell
+Latvian affix table for OpenOffice v.v. 2.4.1 and 3.x.x, LibreOffice
+and other applications using HunSpell as the backend
+Copyright (C) 2002-2020 Janis Eisaks, jancs@dv.lv
+
+Licensed as
+GNU LESSER GENERAL PUBLIC LICENSE
+Version 2.1, February 1999
+
+See Licences/Latvian_dictionaries directory.
+
+2)
+Hunspell
+Copyright (C) 2002-2017 Németh László
+
+Licensed as
+MPL 1.1/GPL 2.0/LGPL 2.1
+
+See Licences/Hunspell directory.
+
+================================
