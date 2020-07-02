@@ -42,11 +42,13 @@
 // IMPLEMENTED
 
 // Check Spelling in Strings
+// macOS 10.0+
 - (NSArray<NSString *> *) spellServer:(NSSpellServer *)sender
                 suggestGuessesForWord:(NSString *)word
                            inLanguage:(NSString *)language;
 
 
+// macOS 10.0+
 - (NSRange)               spellServer:(NSSpellServer *)sender
            findMisspelledWordInString:(NSString *)stringToCheck
                              language:(NSString *)language
@@ -54,19 +56,23 @@
                             countOnly:(BOOL)countOnly;
 
 // Managing the Spelling Dictionary
+// macOS 10.0+
 - (void)                  spellServer:(NSSpellServer *)sender
                         didForgetWord:(NSString *)word
                            inLanguage:(NSString *)language;
 
+// macOS 10.0+
 - (void)                  spellServer:(NSSpellServer *)sender
                          didLearnWord:(NSString *)word
                            inLanguage:(NSString *)language;
 
+// macOS 10.3+
 - (NSArray<NSString *> *) spellServer:(NSSpellServer *)sender
 suggestCompletionsForPartialWordRange:(NSRange)range
                              inString:(NSString *)string
                              language:(NSString *)language;
 
+// macOS 10.7+
 - (void)                  spellServer:(NSSpellServer *)sender
                        recordResponse:(NSUInteger)response
                          toCorrection:(NSString *)correction
@@ -76,6 +82,7 @@ suggestCompletionsForPartialWordRange:(NSRange)range
 ////////////////////////////////////
 // NOT IMPLEMENTED
 
+// macOS 10.6+
 //- (NSArray<NSTextCheckingResult *> *)spellServer:(NSSpellServer *)sender
 //                                     checkString:(NSString *)stringToCheck
 //                                          offset:(NSUInteger)offset
@@ -84,6 +91,7 @@ suggestCompletionsForPartialWordRange:(NSRange)range
 //                                     orthography:(NSOrthography *)orthography
 //                                       wordCount:(NSInteger *)wordCount;
 //
+// macOS 10.5+
 //- (NSRange)spellServer:(NSSpellServer *)sender
 //  checkGrammarInString:(NSString *)stringToCheck
 //              language:(NSString *)language

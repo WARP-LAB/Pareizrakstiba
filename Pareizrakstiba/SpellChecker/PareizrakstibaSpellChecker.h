@@ -45,12 +45,38 @@ class	Hunspell;
 }
 - (id)init;
 - (void) dealloc;
-- (NSRange)spellServer:(NSSpellServer *)sender findMisspelledWordInString:(NSString *)stringToCheck language:(NSString *)language wordCount:(NSInteger *)wordCount countOnly:(BOOL)countOnly;
-- (NSArray *)spellServer:(NSSpellServer *)sender suggestGuessesForWord:(NSString *)word inLanguage:(NSString *)language;
-- (NSArray *)spellServer:(NSSpellServer *)sender suggestCompletionsForPartialWordRange:(NSRange)range inString:(NSString *)string language:(NSString *)language;
-- (void)spellServer:(NSSpellServer *)sender recordResponse:(NSUInteger)response toCorrection:(NSString *)correction forWord:(NSString *)word language:(NSString *)language;
-- (void)spellServer:(NSSpellServer *)sender didLearnWord:(NSString *)word inLanguage:(NSString *)language;
-- (void)spellServer:(NSSpellServer *)sender didForgetWord:(NSString *)word inLanguage:(NSString *)language;
 
+// Check Spelling in Strings
+
+- (NSArray<NSString *> *) spellServer:(NSSpellServer *)sender
+                suggestGuessesForWord:(NSString *)word
+                           inLanguage:(NSString *)language;
+
+- (NSRange)               spellServer:(NSSpellServer *)sender
+           findMisspelledWordInString:(NSString *)stringToCheck
+                             language:(NSString *)language
+                            wordCount:(NSInteger *)wordCount
+                            countOnly:(BOOL)countOnly;
+
+// Managing the Spelling Dictionary
+
+- (void)                  spellServer:(NSSpellServer *)sender
+                        didForgetWord:(NSString *)word
+                           inLanguage:(NSString *)language;
+
+- (void)                  spellServer:(NSSpellServer *)sender
+                         didLearnWord:(NSString *)word
+                           inLanguage:(NSString *)language;
+
+- (NSArray<NSString *> *) spellServer:(NSSpellServer *)sender
+suggestCompletionsForPartialWordRange:(NSRange)range
+                             inString:(NSString *)string
+                             language:(NSString *)language;
+
+- (void)                  spellServer:(NSSpellServer *)sender
+                       recordResponse:(NSUInteger)response
+                         toCorrection:(NSString *)correction
+                              forWord:(NSString *)word
+                             language:(NSString *)language;
 
 @end

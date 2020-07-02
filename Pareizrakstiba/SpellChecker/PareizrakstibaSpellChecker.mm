@@ -63,8 +63,42 @@ struct EncodingMapping {
   [super dealloc];
 }
 
+// Suggest guesses for the correct spelling of the given misspelled word
+- (NSArray<NSString *> *) spellServer:(NSSpellServer *)sender
+                suggestGuessesForWord:(NSString *)word
+                           inLanguage:(NSString *)language
+{
+  NSMutableArray *guessesForWord = [NSMutableArray array]; // create a dynamic array
+  char ** hsSuggestList = 0;
+
+#if DEBUG
+  NSLog(@"Trying to get suggestions for string: %s", [word UTF8String]);
+#endif
+
+#if DICTENCODE
+  NSInteger hsSuggestListCount = myHS -> suggest (&hsSuggestList, [word cStringUsingEncoding:(NSStringEncoding)[self hunspellDictEncodingToNSEncoding:myHS->get_dic_encoding()]]); // returns number of suggestions and write them into hsSuggestList array
+#else
+  NSInteger hsSuggestListCount = myHS -> suggest (&hsSuggestList, [word UTF8String]); // returns number of suggestions and write them into hsSuggestList array
+#endif
+
+  for (NSInteger i = 0; i < hsSuggestListCount; ++i) { // for all suggestions
+#if DICTENCODE
+    [guessesForWord addObject:[NSString stringWithCString: hsSuggestList[i] encoding:(NSStringEncoding)[self hunspellDictEncodingToNSEncoding:myHS->get_dic_encoding()]]];
+#else
+    [guessesForWord addObject:[NSString stringWithUTF8String:hsSuggestList[i]]]; // add suggestion to suggestions array from sugList array
+#endif
+  }
+  if(hsSuggestList) myHS->free_list(&hsSuggestList, hsSuggestListCount); // clean suggest list
+
+  return guessesForWord; // return our array
+}
+
 // Search for a misspelled word in a given string
-- (NSRange)spellServer:(NSSpellServer *)sender findMisspelledWordInString:(NSString *)stringToCheck language:(NSString *)language wordCount:(NSInteger *)wordCount countOnly:(BOOL)countOnly
+- (NSRange)               spellServer:(NSSpellServer *)sender
+           findMisspelledWordInString:(NSString *)stringToCheck
+                             language:(NSString *)language
+                            wordCount:(NSInteger *)wordCount
+                            countOnly:(BOOL)countOnly
 {
 
   NSScanner *stringToCheckScanner = [NSScanner scannerWithString:stringToCheck]; // create NSScanner object to scan stringToCheck
@@ -92,7 +126,7 @@ struct EncodingMapping {
           if ((myHS -> spell ([wordToCheck UTF8String])) || ([sender isWordInUserDictionaries:wordToCheck caseSensitive:YES]))
 #endif
           {
-            wordCountUntill++;
+            ++wordCountUntill;
             continue;
           }
           else
@@ -126,100 +160,10 @@ struct EncodingMapping {
 #endif  // MAC_OS_X_VERSION_MAX_ALLOWED <= MAC_OS_X_VERSION_10_4
 }
 
-// Suggest guesses for the correct spelling of the given misspelled word
-- (NSArray *)spellServer:(NSSpellServer *)sender suggestGuessesForWord:(NSString *)word inLanguage:(NSString *)language
-{
-  NSMutableArray *guessesForWord = [NSMutableArray array]; // create a dynamic array
-  char ** hsSuggestList = 0;
-
-#if DEBUG
-  NSLog(@"Trying to get suggestions for string: %s", [word UTF8String]);
-#endif
-
-#if DICTENCODE
-  NSInteger hsSuggestListCount = myHS -> suggest (&hsSuggestList, [word cStringUsingEncoding:(NSStringEncoding)[self hunspellDictEncodingToNSEncoding:myHS->get_dic_encoding()]]); // returns number of suggestions and write them into hsSuggestList array
-#else
-  NSInteger hsSuggestListCount = myHS -> suggest (&hsSuggestList, [word UTF8String]); // returns number of suggestions and write them into hsSuggestList array
-#endif
-
-  for (NSInteger i = 0; i < hsSuggestListCount; i++) { // for all suggestions
-#if DICTENCODE
-    [guessesForWord addObject:[NSString stringWithCString: hsSuggestList[i] encoding:(NSStringEncoding)[self hunspellDictEncodingToNSEncoding:myHS->get_dic_encoding()]]];
-#else
-    [guessesForWord addObject:[NSString stringWithUTF8String:hsSuggestList[i]]]; // add suggestion to suggestions array from sugList array
-#endif
-  }
-  if(hsSuggestList) myHS->free_list(&hsSuggestList, hsSuggestListCount); // clean suggest list
-
-  return guessesForWord; // return our array
-}
-
-// Possible word completions, based on a partially completed string
-- (NSArray *)spellServer:(NSSpellServer *)sender suggestCompletionsForPartialWordRange:(NSRange)range inString:(NSString *)string language:(NSString *)language
-{
-
-  // I will use array that's returned by suggestGuessesForWord. However it is a suggestion list for the right spelling of the current partialy completed world,
-  // not a suggstion for competion! There's a difference!
-  // return [self spellServer:sender suggestGuessesForWord:string inLanguage:language]; // reuse suggestGuessesForWord which returns an array of words
-
-  // Get the partial range
-  NSString *rangeString = [NSString stringWithString:[string substringWithRange:range]]; // keep an autoreleased copy around
-
-  // Therefore we will make string comparisons, to remove those words from suggestGuessesForWord returned array, which don't appear to be completions
-  NSMutableArray *completionsList = [NSMutableArray arrayWithArray:[self spellServer:sender suggestGuessesForWord:rangeString inLanguage:language]];
-  // make or completionsList to hold all suggestGuessesForWord array values
-  for(NSUInteger i=0;i<[completionsList count]; ) { //check all completionsList array
-    // if a word in completionsList at position i does not start with the same characters (and also that the characters are ordered the same)
-    // as the current range for inString, then this isn't going to be a completion, thus remove it from the array
-
-    // accordingly to apple docs this should be faster than hasPrefix (quote: "can speed some operations dramatically"), but wee need extra range check. whatever.
-    // if (![[completionsList objectAtIndex:i] hasPrefix:rangeString])
-    if (
-        ( [[completionsList objectAtIndex:i] length] < [rangeString length] ) ||
-        ( [[completionsList objectAtIndex:i] compare:rangeString options:(NSLiteralSearch) range:NSMakeRange(0,[rangeString length])] != NSOrderedSame )
-        )
-    {
-      [completionsList removeObjectAtIndex:i];
-    }
-    else {
-      i++;
-    }
-  }
-  return completionsList;
-}
-
-// Notifies the spell checker of the users’s response to a correction. (required)
-- (void)spellServer:(NSSpellServer *)sender recordResponse:(NSUInteger)response toCorrection:(NSString *)correction forWord:(NSString *)word language:(NSString *)language {
-
-  // When the user accepts, rejects, or edits an autocorrection, the view notifies the NSSpellChecker class of what happened
-  // in the client application, and NSSpellChecker then invokes this method, so that it can record that and modify future autocorrection
-  // behavior based on what it has learned from the user's actions.
-  //
-  // This is introduced in 10.7 and is required method.
-  // /dev/null this one
-}
-
-
-// User has added the specified word to the user’s list of acceptable words in the specified language.
-- (void)spellServer:(NSSpellServer *)sender didLearnWord:(NSString *)word inLanguage:(NSString *)language
-{
-
-  // When user chooses to "Learn Spelling" for a word OSX automatically adds it to user dictionary, located at ~/Library/Spelling/<langid>
-  // It works and word isn't spelled any more.
-  //
-  // When user chooses to "Ignore Spelling" no word is added to user dictionary, the word is kept in "memory" and
-  // only while document containing the word is loaded.
-  //
-  // I see no need to use Hunspell method of adding word to the run-time dictionary, as it is managed in OS level and won't be passed here anyways
-  // myHS->add([word UTF8String]);
-
-#if DEBUG
-  NSLog(@"User learned word \"%@\" in language %@.\n", word, language);
-#endif
-}
-
 // User has removed the specified word from the user’s list of acceptable words in the specified language
-- (void)spellServer:(NSSpellServer *)sender didForgetWord:(NSString *)word inLanguage:(NSString *)language
+- (void)                  spellServer:(NSSpellServer *)sender
+                        didForgetWord:(NSString *)word
+                           inLanguage:(NSString *)language
 {
 
   //   When user chooses to "Unlearn Spelling" for a word OSX does it, using the same user dictionary, located at ~/Library/Spelling/<languageid>
@@ -246,6 +190,80 @@ struct EncodingMapping {
 #endif
 }
 
+// User has added the specified word to the user’s list of acceptable words in the specified language.
+- (void)                  spellServer:(NSSpellServer *)sender
+                         didLearnWord:(NSString *)word
+                           inLanguage:(NSString *)language
+{
+
+  // When user chooses to "Learn Spelling" for a word OSX automatically adds it to user dictionary, located at ~/Library/Spelling/<langid>
+  // It works and word isn't spelled any more.
+  //
+  // When user chooses to "Ignore Spelling" no word is added to user dictionary, the word is kept in "memory" and
+  // only while document containing the word is loaded.
+  //
+  // I see no need to use Hunspell method of adding word to the run-time dictionary, as it is managed in OS level and won't be passed here anyways
+  // myHS->add([word UTF8String]);
+
+#if DEBUG
+  NSLog(@"User learned word \"%@\" in language %@.\n", word, language);
+#endif
+}
+
+// Possible word completions, based on a partially completed string
+- (NSArray<NSString *> *) spellServer:(NSSpellServer *)sender
+suggestCompletionsForPartialWordRange:(NSRange)range
+                             inString:(NSString *)string
+                             language:(NSString *)language
+{
+
+  // I will use array that's returned by suggestGuessesForWord. However it is a suggestion list for the right spelling of the current partialy completed world,
+  // not a suggstion for competion! There's a difference!
+  // return [self spellServer:sender suggestGuessesForWord:string inLanguage:language]; // reuse suggestGuessesForWord which returns an array of words
+
+  // Get the partial range
+  NSString *rangeString = [NSString stringWithString:[string substringWithRange:range]]; // keep an autoreleased copy around
+
+  // Therefore we will make string comparisons, to remove those words from suggestGuessesForWord returned array, which don't appear to be completions
+  NSMutableArray *completionsList = [NSMutableArray arrayWithArray:[self spellServer:sender suggestGuessesForWord:rangeString inLanguage:language]];
+
+  // make or completionsList to hold all suggestGuessesForWord array values
+  for(NSUInteger i=0;i<[completionsList count]; ) { //check all completionsList array
+    // if a word in completionsList at position i does not start with the same characters (and also that the characters are ordered the same)
+    // as the current range for inString, then this isn't going to be a completion, thus remove it from the array
+
+    // accordingly to apple docs this should be faster than hasPrefix (quote: "can speed some operations dramatically"), but wee need extra range check. whatever.
+    // if (![[completionsList objectAtIndex:i] hasPrefix:rangeString])
+    if (
+        ( [[completionsList objectAtIndex:i] length] < [rangeString length] ) ||
+        ( [[completionsList objectAtIndex:i] compare:rangeString options:(NSLiteralSearch) range:NSMakeRange(0,[rangeString length])] != NSOrderedSame )
+        )
+    {
+      [completionsList removeObjectAtIndex:i];
+    }
+    else {
+      ++i;
+    }
+  }
+
+  return completionsList;
+}
+
+// Notifies the spell checker of the users’s response to a correction. (required)
+- (void)                  spellServer:(NSSpellServer *)sender
+                       recordResponse:(NSUInteger)response
+                         toCorrection:(NSString *)correction
+                              forWord:(NSString *)word
+                             language:(NSString *)language
+{
+
+  // When the user accepts, rejects, or edits an autocorrection, the view notifies the NSSpellChecker class of what happened
+  // in the client application, and NSSpellChecker then invokes this method, so that it can record that and modify future autocorrection
+  // behavior based on what it has learned from the user's actions.
+  //
+  // This is introduced in 10.7 and is required method.
+  // /dev/null this one
+}
 
 - (NSStringEncoding) hunspellDictEncodingToNSEncoding:(const char*)encoding
 {
@@ -303,7 +321,7 @@ struct EncodingMapping {
     {"microsoft-cp1361",kCFStringEncodingWindowsKoreanJohab},
   };
 
-  for (unsigned int i = 0; i < sizeof(mappings)/sizeof(EncodingMapping); i++) {
+  for (unsigned int i = 0; i < sizeof(mappings)/sizeof(EncodingMapping); ++i) {
     if (strcmp(encoding,mappings[i].name) == 0)
       // unsigned long
       return CFStringConvertEncodingToNSStringEncoding(mappings[i].encoding);
@@ -320,7 +338,7 @@ struct EncodingMapping {
     if (strstr ([encodingName UTF8String], encoding) != 0) {
       return *encodings;
     }
-    encodings++;
+    ++encodings;
   }
 
   //    fprintf(stderr, "Pareizrakstiba error: unrecognized encoding: %s. Setting to ASCII.\n",encoding);

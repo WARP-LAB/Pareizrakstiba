@@ -58,11 +58,13 @@
 }
 
 // Possible word completions, based on a partially completed string
-- (NSArray *)spellServer:(NSSpellServer *)sender suggestCompletionsForPartialWordRange:(NSRange)range inString:(NSString *)string language:(NSString *)language
+- (NSArray<NSString *> *) spellServer:(NSSpellServer *)sender
+suggestCompletionsForPartialWordRange:(NSRange)range
+                             inString:(NSString *)string
+                             language:(NSString *)language
 {
   return [mySC spellServer:sender suggestCompletionsForPartialWordRange:range inString:string language:language];
 }
-
 
 // User has removed the specified word from the user’s list of acceptable words in the specified language
 - (void)                  spellServer:(NSSpellServer *)sender
