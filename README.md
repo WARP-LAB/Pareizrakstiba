@@ -30,7 +30,8 @@ TODO
 
 * 2020-07-02  
 * Hunspell updated to 1.7.0  
-* Language affix tables updated to 1.4.0  
+* Language dictionary and affix tables updated to 1.4.0  
+* Looked at Nuspell, but kept Hunspell for this version because I'm lazy
 
 #### 3.2
 
@@ -83,7 +84,7 @@ TODO
 * First public version.
 * Finished documentation.
 
-#### v1.0
+#### 1.0
 
 * 2008-03-31
 * Test version.
