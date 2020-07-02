@@ -23,6 +23,8 @@ If you wish to use this then before running *Installer* you have enable the poss
 
 * If not, then unlock *System Preferences* and set it to *Anywhere*
 
+* Run *Installer.app*. It can be used both for installing and uninstalling Pareizrakstība.
+
 * On first use in any app using spellchecking you might be greeted with a dialog which will ask if you want to open Pareizrakstība as it is run for the first time. Clicking *Open* is suggested.
 
 ![](first-time.png)
