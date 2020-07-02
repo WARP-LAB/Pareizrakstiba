@@ -29,9 +29,17 @@ TODO
 #### 2020.01
 
 * 2020-07-02  
-* Hunspell updated to 1.7.0  
-* Language dictionary and affix tables updated to 1.4.0  
+* Language dictionary and affix tables updated to latest stable 1.4.0 (2020-04-11)
+* Hunspell updated to latest stable 1.7.0 (2018-11-12)
 * Looked at Nuspell, but kept Hunspell for this version because I'm lazy
+* Beta as it is not code signed.
+
+#### 4.0
+
+* 2018-01-19
+* A version for Mac OS X 10.13 (64-bit) created.
+* Language dictionary and affix tables updated to latest stable 1.3.0 (2016-09-16).
+* Beta as it is not code signed.
 
 #### 3.2
 
@@ -39,18 +47,18 @@ TODO
 * A version for Mac OS X 10.10+ (64-bit) created.
 * Built w/ deployment target 10.9, so it should work also from 10.9.
 * However v3.1 is still suggested for OS X 10.7 to 10.9.
-* Beta as it is not certified and code signed.
-* Using Latvian affix table v.1.1.0. (21.05.2015.).
-* Using Hunspell 1.3.3. (02.06.2014.).
+* Language dictionary and affix tables updated to latest stable 1.1.0. (2015-05-21).
+* Hunspell updated to latest stable 1.3.3. (2014-06-02).
+* Beta as it is not code signed.
 
 #### 3.1
 
 * 2013-05-03
 * A version for Mac OS X 10.7+ (32 & 64-bit) created.
+* Language dictionary and affix tables updated to latest stable 0.9.6. (2013-04-15).
+* Hunspell updated to latest stable 1.3.2. (2011-02-16).
 * Beta as it is not certified and code signed.
-* Using Latvian affix table v.0.9.6. (15.04.2013.).
-* Using Hunspell 1.3.2. (16.02.2011.).
-
+* 
 #### 3.01
 
 * 2010-05-16
@@ -61,8 +69,8 @@ TODO
 * 2010-04-19
 * A version for Mac OS 10.6 (32 & 64-bit) created.
 * Rewrite for OS 10.4 and 10.5.
-* Using Latvian affix table v.0.9.1. (22.04.2010.).
-* Using Hunspell 1.2.9. (03.03.2010.).
+* Language dictionary and affix tables updated to latest stable 0.9.1. (2010-04-22).
+* Hunspell updated to latest stable 1.2.9. (2010-03-03).
 * Enabled autocomplete. Possible word completions can be called by pressing ESC key.
 * Various enhancements in the code.
 * Releasing a preference pane System Preferences : Pareizrakstība that gives user ability to set various options for spellchecking has been postponed.
@@ -88,7 +96,7 @@ TODO
 
 * 2008-03-31
 * Test version.
-* Corrections made for Latvian affix table v.0.7.3:
+* Corrections made for Latvian affix table 0.7.3:
 	- Affix and dictionary files are converted to UTF-8.
 	- Some changes in aff (TRY UTF-8).
 	- Removed all unnecessary information.
