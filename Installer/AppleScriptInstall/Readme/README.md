@@ -45,12 +45,13 @@ If you wish to use this then before running *Installer* you have enable the poss
 
 ![](example-01.png)
 
-* Make sure that in applications Latvian spellcheck is selected Edit : Spelling and Grammar : Show Spelling and Grammar : Latviešu (Pareizrakstiba)
+## Notes
 
-* LibreOffice / NeoOffice / OpenOffice users have no need to install dictionaries from File : Wizards : Install New Dictionaries, for the mentioned applications use macOS system wide spellcheck. Besides, when using Pareizrakstība in the applications and adding new words, they will apply to the whole OS.
-
-* Learned words are kept in ~/Library/Spelling/
-
+* Make sure that in applications Latvian spellcheck is selected *Edit : Spelling and Grammar : Show Spelling and Grammar : Latviešu (Pareizrakstiba)*
+* Play around with settings under *System Preferences : Keyboard : Text*. Here you can also set preferred default spelling language (*Installer* also has a step which lets you choose Latvian as preferred).
+* *LibreOffice* / *OpenOffice* et al. users have no need to download and install dictionaries from within these apps, for the mentioned applications use macOS system wide spellcheck. Besides, when using Pareizrakstība in the applications and adding new words, they will apply to the whole OS.
+* Learned words are kept in `~/Library/Spelling/`
+* Since Mac OS X 10.6 shortcut for the rarely used autocompletion list is either `Option+Esc` or `F5`, previously it was `Esc`.
 
 [1] This project has been continued over a decade now. Although it was used widely in the community *donations never worked*. If you wish for it to be officially signed, for example you wish to run this in a strict corporate environment or plainly do not want to open up your system for unsigned apps, build it from source on every machine or contact the developer for options (you / community could sponsor the Apple fee so that signed version can be built).
 

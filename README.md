@@ -19,8 +19,10 @@ Service that adds support for system wide spellchecking in Latvian language.
 ## Notes
 
 * Make sure that in applications Latvian spellcheck is selected *Edit : Spelling and Grammar : Show Spelling and Grammar : Latviešu (Pareizrakstiba)*
+* Play around with settings under *System Preferences : Keyboard : Text*. Here you can also set preferred default spelling language (*Installer* also has a step which lets you choose Latvian as preferred).
 * *LibreOffice* / *OpenOffice* et al. users have no need to download and install dictionaries from within these apps, for the mentioned applications use macOS system wide spellcheck. Besides, when using Pareizrakstība in the applications and adding new words, they will apply to the whole OS.
 * Learned words are kept in `~/Library/Spelling/`
+* Since Mac OS X 10.6 shortcut for the rarely used autocompletion list is either `Option+Esc` or `F5`, previously it was `Esc`.
 
 ## Additional information
 
