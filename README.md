@@ -18,7 +18,9 @@ Service that adds support for system wide spellchecking in Latvian language.
 
 ## Notes
 
-TODO
+* Make sure that in applications Latvian spellcheck is selected *Edit : Spelling and Grammar : Show Spelling and Grammar : Latviešu (Pareizrakstiba)*
+* *LibreOffice* / *OpenOffice* et al. users have no need to download and install dictionaries from within these apps, for the mentioned applications use macOS system wide spellcheck. Besides, when using Pareizrakstība in the applications and adding new words, they will apply to the whole OS.
+* Learned words are kept in `~/Library/Spelling/`
 
 ## Additional information
 

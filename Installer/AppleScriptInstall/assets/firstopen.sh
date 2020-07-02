@@ -24,29 +24,9 @@ PBS="/System/Library/CoreServices/pbs"
 # exit 0
 
 # ================================
-# Revoke elevated
+# Open first time
 
-sudo -k
-
-# ================================
-# Create user Services dir if not exists
-
-mkdir -p ~/Library/Services/
-
-# ================================
-# Unpack, put into place
-
-rm -rf ~/Library/Services/Pareizrakstiba.service
-rm -rf ~/Library/Services/Pareizrakstiba.service.zip
-
-cp $CURRENT_DIR/Pareizrakstiba.service.zip  ~/Library/Services/
-unzip ~/Library/Services/Pareizrakstiba.service.zip -d ~/Library/Services/
-rm -rf ~/Library/Services/Pareizrakstiba.service.zip
-
-# ================================
-# Flush
-
-if [ -f $PBS ];
+if [ $SYSVER_MIN -gt "4" ];
 then
-  $PBS -flush
+sudo -u $CONSOLE_USER /usr/bin/open -n ~/Library/Services/Pareizrakstiba.service &
 fi
