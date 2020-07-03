@@ -36,7 +36,7 @@ Service that adds support for system wide spellchecking in Latvian language.
 git clone --recursive git@github.com:WARP-LAB/Pareizrakstiba.git
 cd Pareizrakstiba
 bash build-release.sh
-ls -la build/Release
+open build/Release
 ```
 
 ## Version history
