@@ -1,0 +1,3 @@
+[submodule "hunspell/hunspell"]
+	path = hunspell/hunspell
+	url = git@github.com:hunspell/hunspell.git
