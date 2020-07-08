@@ -98,7 +98,7 @@ Move the resulting `Pareizrakstiba.service` bundle to one of the following locat
 * Language dictionary and affix tables updated to latest stable 0.9.6. (2013-04-15).
 * Hunspell updated to latest stable 1.3.2. (2011-02-16).
 * Beta as it is not certified and code signed.
-* 
+
 #### 3.01
 
 * 2010-05-16
