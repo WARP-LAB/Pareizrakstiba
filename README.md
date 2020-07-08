@@ -43,7 +43,7 @@ open build/Release
 
 Resulting product is `Pareizrakstiba.service` bundle.
 
-#### Kill existing service and remove it (if exists)
+#### If already exists on the system - kill Pareizrakstiba service and remove it
 
 ```sh
 sudo killall Pareizrakstiba > /dev/null 2>&1
@@ -52,9 +52,9 @@ sudo rm -rf /Library/Services/Pareizrakstiba.service
 sudo -k
 ```
 
-#### Move the product to correct install path
+#### Move the product to the correct install path
 
-Move the resulting `Pareizrakstiba.service` bundle to either 
+Move the resulting `Pareizrakstiba.service` bundle to one of the following locations 
 * `~/Library/Services` for current user (create directory, if needed)
 * `/Library/Services` for all users (check permissions)
 
