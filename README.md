@@ -32,11 +32,36 @@ Service that adds support for system wide spellchecking in Latvian language.
 
 ## Building from source
 
+#### Build
+
 ```sh
 git clone --recursive git@github.com:WARP-LAB/Pareizrakstiba.git
 cd Pareizrakstiba
 bash build-release.sh
 open build/Release
+```
+
+Resulting product is `Pareizrakstiba.service` bundle.
+
+#### Kill existing service and remove it (if exists)
+
+```sh
+sudo killall Pareizrakstiba > /dev/null 2>&1
+sudo rm -rf ~/Library/Services/Pareizrakstiba.service
+sudo rm -rf /Library/Services/Pareizrakstiba.service
+sudo -k
+```
+
+#### Move the product to correct install path
+
+Move the resulting `Pareizrakstiba.service` bundle to either 
+* `~/Library/Services` for current user (create directory, if needed)
+* `/Library/Services` for all users (check permissions)
+
+#### Flush services
+
+```sh
+/System/Library/CoreServices/pbs -flush
 ```
 
 ## Version history
