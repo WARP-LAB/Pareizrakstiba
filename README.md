@@ -146,6 +146,12 @@ Move the built `Pareizrakstiba.service` bundle to one of the following locations
 	- Some changes in aff (TRY UTF-8).
 	- Removed all unnecessary information.
 
+## OS API / behaviour bugs
+
+Bugs as reported to Apple by Pareizrakstība developer:
+* <https://lists.apple.com/archives/Cocoa-dev/2009/Oct/msg00637.html>
+* <https://lists.apple.com/archives/Cocoa-dev/2009/Oct/msg01212.html>
+
 ## License
 
 [GNU GENERAL PUBLIC LICENSE, Version 2, June 1991](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
