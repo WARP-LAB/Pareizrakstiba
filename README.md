@@ -40,7 +40,7 @@ Service that adds support for system wide spellchecking in Latvian language.
 ```sh
 git clone --recursive git@github.com:WARP-LAB/Pareizrakstiba.git
 cd Pareizrakstiba
-bash build-release.sh
+$(echo $SHELL) build-release.sh
 open build/Release
 ```
 
