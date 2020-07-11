@@ -44,9 +44,9 @@ bash build-release.sh
 open build/Release
 ```
 
-Resulting product is `Pareizrakstiba.service` bundle.
+The resulting product is `Pareizrakstiba.service` bundle.
 
-#### If already exists on the system - kill Pareizrakstiba service and remove it
+#### If already exists on the system, kill Pareizrakstiba service and remove it
 
 ```sh
 sudo killall Pareizrakstiba > /dev/null 2>&1
@@ -57,7 +57,7 @@ sudo -k
 
 #### Move the product to the correct install path
 
-Move the resulting `Pareizrakstiba.service` bundle to one of the following locations 
+Move the built `Pareizrakstiba.service` bundle to one of the following locations 
 * `~/Library/Services` for current user (create directory, if needed)
 * `/Library/Services` for all users (check permissions)
 
@@ -72,23 +72,25 @@ Move the resulting `Pareizrakstiba.service` bundle to one of the following locat
 #### 2020.01
 
 * 2020-07-02  
-* Language dictionary and affix tables updated to latest stable 1.4.0 (2020-04-11)
-* Hunspell updated to latest stable 1.7.0 (2018-11-12)
-* Looked at Nuspell, but kept Hunspell for this version because I'm lazy
+* A version for macOS 10.15 (64-bit) created.
+* Built w/ minimum deployment target macOS 10.13.
+* Language dictionary and affix tables updated to latest stable 1.4.0 (2020-04-11).
+* Hunspell updated to latest stable 1.7.0 (2018-11-12).
+* Looked at Nuspell, but kept Hunspell for this version because I'm lazy.
 * Beta as it is not code signed.
 
 #### 4.0
 
 * 2018-01-19
-* A version for Mac OS X 10.13 (64-bit) created.
+* A version for macOS 10.13 (64-bit) created.
 * Language dictionary and affix tables updated to latest stable 1.3.0 (2016-09-16).
 * Beta as it is not code signed.
 
 #### 3.2
 
 * 2015-07-02
-* A version for Mac OS X 10.10+ (64-bit) created.
-* Built w/ deployment target 10.9, so it should work also from 10.9.
+* A version for OS X 10.10+ (64-bit) created.
+* Built w/ minimum deployment target OS X 10.9.
 * However v3.1 is still suggested for OS X 10.7 to 10.9.
 * Language dictionary and affix tables updated to latest stable 1.1.0. (2015-05-21).
 * Hunspell updated to latest stable 1.3.3. (2014-06-02).
@@ -110,18 +112,18 @@ Move the resulting `Pareizrakstiba.service` bundle to one of the following locat
 #### 3.0
 
 * 2010-04-19
-* A version for Mac OS 10.6 (32 & 64-bit) created.
-* Rewrite for OS 10.4 and 10.5.
+* A version for Mac OS X 10.6 (32 & 64-bit) created.
+* Rewrite for Mac OS X 10.4 and 10.5.
 * Language dictionary and affix tables updated to latest stable 0.9.1. (2010-04-22).
 * Hunspell updated to latest stable 1.2.9. (2010-03-03).
-* Enabled autocomplete. Possible word completions can be called by pressing ESC key.
+* Enabled autocomplete. Possible word completions can be called by pressing `ESC` key.
 * Various enhancements in the code.
-* Releasing a preference pane System Preferences : Pareizrakstība that gives user ability to set various options for spellchecking has been postponed.
+* Releasing a preference pane *System Preferences : Pareizrakstība* that gives user ability to set various options for spellchecking has been postponed.
 
 #### 2.1
 
 * 2008-05-10
-* Solved issue with Mac OS 10.4.
+* Solved issue with Mac OS X 10.4.
 
 #### 2.0
 
@@ -139,7 +141,7 @@ Move the resulting `Pareizrakstiba.service` bundle to one of the following locat
 
 * 2008-03-31
 * Test version.
-* Corrections made for Latvian affix table 0.7.3:
+* Corrections made for Latvian dictionary and affix tables 0.7.3:
 	- Affix and dictionary files are converted to UTF-8.
 	- Some changes in aff (TRY UTF-8).
 	- Removed all unnecessary information.
