@@ -59,18 +59,16 @@
                            inLanguage:(NSString *)language
 {
   NSMutableArray *guessesForWord = [NSMutableArray array]; // create a dynamic array
-  char ** hsSuggestList = 0;
 
 #if DEBUG
   NSLog(@"Trying to get suggestions for string: %s", [word UTF8String]);
 #endif
 
-  NSInteger hsSuggestListCount = myHS -> suggest (&hsSuggestList, [word UTF8String]); // returns number of suggestions and write them into hsSuggestList array
+  std::vector<std::string> hsSuggestList = myHS -> suggest ([word UTF8String]); // returns a vector of suggestions, memory handled by the vector itself
 
-  for (NSInteger i = 0; i < hsSuggestListCount; ++i) { // for all suggestions
-    [guessesForWord addObject:[NSString stringWithUTF8String:hsSuggestList[i]]]; // add suggestion to suggestions array from sugList array
+  for (const std::string &suggestion : hsSuggestList) { // for all suggestions
+    [guessesForWord addObject:[NSString stringWithUTF8String:suggestion.c_str()]]; // add suggestion to suggestions array
   }
-  if(hsSuggestList) myHS->free_list(&hsSuggestList, hsSuggestListCount); // clean suggest list
 
   return guessesForWord; // return our array
 }
@@ -101,7 +99,7 @@
         [stringToCheckScanner scanCharactersFromSet:wordCharSet intoString:&wordToCheck];	// scan the stringToCheck as long as characters from wordCharSet are encountered
         // and accumulate characters into wordToCheck
         // if word is in dictionary or or word is in user dictionary
-        if ((myHS -> spell ([wordToCheck UTF8String])) || ([sender isWordInUserDictionaries:wordToCheck caseSensitive:YES]))
+        if ((myHS -> spell (std::string ([wordToCheck UTF8String]))) || ([sender isWordInUserDictionaries:wordToCheck caseSensitive:YES]))
           {
             ++wordCountUntill;
             continue;
