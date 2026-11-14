@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C0A400000000000000000002 /* hunspelltrace.cxx in Sources */ = {isa = PBXBuildFile; fileRef = C0A400000000000000000001 /* hunspelltrace.cxx */; };
 		9384A36024AF37C000C4357D /* filemgr.cxx in Sources */ = {isa = PBXBuildFile; fileRef = 9384A34224AF37BF00C4357D /* filemgr.cxx */; };
 		9384A36124AF37C000C4357D /* hunspell.cxx in Sources */ = {isa = PBXBuildFile; fileRef = 9384A34324AF37BF00C4357D /* hunspell.cxx */; };
 		9384A36224AF37C000C4357D /* suggestmgr.cxx in Sources */ = {isa = PBXBuildFile; fileRef = 9384A34724AF37C000C4357D /* suggestmgr.cxx */; };
@@ -28,6 +29,7 @@
 /* Begin PBXFileReference section */
 		9384A34224AF37BF00C4357D /* filemgr.cxx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = filemgr.cxx; sourceTree = "<group>"; };
 		9384A34324AF37BF00C4357D /* hunspell.cxx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hunspell.cxx; sourceTree = "<group>"; };
+		C0A400000000000000000001 /* hunspelltrace.cxx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hunspelltrace.cxx; sourceTree = "<group>"; };
 		9384A34424AF37BF00C4357D /* htypes.hxx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = htypes.hxx; sourceTree = "<group>"; };
 		9384A34524AF37C000C4357D /* baseaffix.hxx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = baseaffix.hxx; sourceTree = "<group>"; };
 		9384A34624AF37C000C4357D /* replist.hxx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = replist.hxx; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 				9384A36C24AF37DA00C4357D /* config.h */,
 				9384A34224AF37BF00C4357D /* filemgr.cxx */,
 				9384A34324AF37BF00C4357D /* hunspell.cxx */,
+				C0A400000000000000000001 /* hunspelltrace.cxx */,
 				9384A34424AF37BF00C4357D /* htypes.hxx */,
 				9384A34524AF37C000C4357D /* baseaffix.hxx */,
 				9384A34624AF37C000C4357D /* replist.hxx */,
@@ -286,6 +289,7 @@
 				93AFEDC924ADC590006D328A /* PareizrakstibaDelegate.mm in Sources */,
 				9384A36724AF37C000C4357D /* affixmgr.cxx in Sources */,
 				9384A36124AF37C000C4357D /* hunspell.cxx in Sources */,
+				C0A400000000000000000002 /* hunspelltrace.cxx in Sources */,
 				C17D05E01C67B38500C586E6 /* main.mm in Sources */,
 				93AFEDCF24ADCAD7006D328A /* PareizrakstibaSpellChecker.mm in Sources */,
 				93AFEDCA24ADC84A006D328A /* PareizrakstibaSpellServer.mm in Sources */,

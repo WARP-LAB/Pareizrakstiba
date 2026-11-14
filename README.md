@@ -40,14 +40,43 @@ Pareizrakstība does not check for CheckSpell and cocoAspell (and pspell). Histo
 ### Build
 
 ```zsh
-git clone --recursive git@github.com:WARP-LAB/Pareizrakstiba.git
-cd Pareizrakstiba
-./build.sh --help # specify config debug|release, zip yes|no
+# clone
+git clone --recurse-submodules git@github.com:WARP-LAB/Pareizrakstiba.git
+
+# at this point you can pull in and configure latest hunspell (optional)
+# read Hunspell submodule management
+
+# build
+./build.sh --help # specify config release|debug, zip yes|no
 ./build.sh
+
+# profit
 open build/Release # or build/Debug
 ```
 
-The resulting product is `Pareizrakstiba.service` bundle.
+The resulting product is `Pareizrakstiba.service` bundle (zipped by default).
+
+### Hunspell submodule management
+
+This is optional step.
+
+Some helper scripts to pull in newer version and to reconfigure Hunspell if needed.
+
+To (re)configure some extra (as in does not ship with macOS / Xcode CLT) build-time tooling is needed:
+- `autotools` (namely `autoconf`, `automake`)
+- `autopoint` (from `gettext`)
+- `libtool` from GNU instead of Apple's (it will be advertised as `glibtoolize`)
+
+```zsh
+# check if newer tag exists, and if yes, you can checkout that
+vendors/hunspell/check-update.sh
+
+# for autoreconf
+brew install automake libtool gettext
+
+# generate <vendors/hunspell/config.h>
+HUNSPELL_CONFIGURE_PATH="/opt/homebrew/bin:/usr/bin:/bin" vendors/hunspell/generate-config.sh)
+```
 
 #### If already exists on the system, kill Pareizrakstiba service and remove it
 
