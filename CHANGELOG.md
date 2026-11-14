@@ -10,8 +10,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [4.1.0] - 2020-07-02
 
-- Beta as it is not code signed.
-- Tagged as 2020.01
+- Not code signed.
 
 ### Added
 
@@ -26,7 +25,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [4.0.0] - 2018-01-19
 
-- Beta as it is not code signed.
+- Not code signed.
 
 ### Added
 
@@ -39,8 +38,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [3.2.0] - 2015-07-02
 
+- Not code signed.
 - However v3.1 is still suggested for OS X 10.7 to 10.9.
-- Beta as it is not code signed.
 
 ### Added
 
@@ -54,7 +53,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [3.1.0] - 2013-05-03
 
-- Beta as it is not certified and code signed.
+- Not code signed.
 
 ### Added
 
@@ -95,13 +94,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [2.0.0] - 2008-05-10
 
-### Fixed
-
-- Solved issue with iWork '08.
-
 ### Changed
 
 - Pareizrakstība now registers without vendor name.
+
+### Fixed
+
+- Solved issue with iWork '08.
 
 ## [1.1.0] - 2008-04-01
 
