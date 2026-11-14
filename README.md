@@ -11,7 +11,8 @@ Service that adds support for system wide spellchecking in Latvian language.
 
 ## Older OS support
 
-See [Pareizrakstiba-Archive](https://github.com/WARP-LAB/Pareizrakstiba-Archive).
+- macOS 10.13+ Universal [v4.1.0](https://github.com/WARP-LAB/Pareizrakstiba/releases/tag/v4.1.0)
+- Mac OS X 10.7+ Intel 32 & 64-bit [Pareizrakstiba-Archive](https://github.com/WARP-LAB/Pareizrakstiba-Archive)
 
 ## Installation
 
