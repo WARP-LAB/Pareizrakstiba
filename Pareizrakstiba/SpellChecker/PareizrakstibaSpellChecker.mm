@@ -45,12 +45,7 @@ struct EncodingMapping {
     // After substarcting last nonalphanumerical characters, we get "garumz;ime", spell that.
     // Although haven't tested, it seems expensive for me.
 
-#if MAC_OS_X_VERSION_MAX_ALLOWED <= MAC_OS_X_VERSION_10_4
-    // for 10.4 // There was a bug I discovered back then, don't remeber what it was
-    wordCharSet = [[[NSCharacterSet alphanumericCharacterSet] mutableCopy] autorelease];
-#else
     wordCharSet = [NSMutableCharacterSet alphanumericCharacterSet];
-#endif
     [wordCharSet addCharactersInString:@"."];
   }
   return self;
@@ -144,20 +139,13 @@ struct EncodingMapping {
     }
     if (*wordCount) *wordCount = wordCountUntill; // pass number of words till misspelled word
   }
-#if MAC_OS_X_VERSION_MAX_ALLOWED <= MAC_OS_X_VERSION_10_4
-  return NSMakeRange (NSNotFound, 0); // for 10.4 // if our scanner failed to return range, then simply return {0x7fffffff,0} range
-#else
-  // In OS 10.5 and up NSNotFound is defined as NSIntegerMax (prior it was 0x7fffffff). So basically need for this arises whether user's running 32 or 64 bit environment.
-  // Thus- compiling Pareizrakstība as 64-bit, will give NSNotFound==LONG_MAX, however apps utilising OSX spell server CAN expect
-  // INT_MAX. Therefore a warning is rised
+  // If no misspelling was found, signal it with the largest value that survives
+  // the 32-bit NSPortCoder trip to the spell-checking client app:
+  // NSNotFound is NSIntegerMax (LONG_MAX) in 64-bit, but client apps receive
+  // this range over the wire as a 32-bit value and log a truncation warning,
+  // so INT_MAX is returned instead:
   // Pareizrakstiba[xxxx] Warning - conversion from 64 bit to 32 bit integral value requested within NSPortCoder, but the 64 bit value 9223372036854775807 cannot be represented by a 32 bit value
-  // So just return INT_MAX in 64 bit case (or maybe 0x7fffffff ? )
-#if __LP64__ || NS_BUILD_32_LIKE_64
   return NSMakeRange (INT_MAX, 0);
-#else
-  return NSMakeRange (NSNotFound, 0);
-#endif
-#endif  // MAC_OS_X_VERSION_MAX_ALLOWED <= MAC_OS_X_VERSION_10_4
 }
 
 // User has removed the specified word from the user’s list of acceptable words in the specified language

@@ -25,18 +25,6 @@
 #import <CoreFoundation/CoreFoundation.h>
 #import "hunspell.hxx"
 
-#if MAC_OS_X_VERSION_MAX_ALLOWED <= MAC_OS_X_VERSION_10_4 // for 10.4
-// NSInteger/NSUInteger and Max/Mins (for 10.4 we care only about 32-bit arch here)
-#ifndef NSINTEGER_DEFINED
-typedef int NSInteger;
-typedef unsigned int NSUInteger;
-#define NSIntegerMax    INT_MAX
-#define NSIntegerMin    INT_MIN
-#define NSUIntegerMax   UINT_MAX
-#define NSINTEGER_DEFINED 1
-#endif  // NSINTEGER_DEFINED
-#endif  // MAC_OS_X_VERSION_MAX_ALLOWED <= MAC_OS_X_VERSION_10_4
-
 class	Hunspell;
 
 @interface PareizrakstibaSpellChecker : NSObject {
