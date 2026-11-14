@@ -43,7 +43,7 @@ See [Pareizrakstiba-Archive](https://github.com/WARP-LAB/Pareizrakstiba-Archive)
 ```sh
 git clone --recursive git@github.com:WARP-LAB/Pareizrakstiba.git
 cd Pareizrakstiba
-$(echo $SHELL) build-release.sh
+$(echo $SHELL) build.sh
 open build/Release
 ```
 
