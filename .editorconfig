@@ -1,0 +1,107 @@
+# https://editorconfig.org
+
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+indent_style = space
+indent_size = 2
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+# --------------------------------
+# Align with Linux kernel style
+# NOT in this project, this is objc
+# [*.{c,h}]
+# indent_style = tab
+# indent_size = 8
+
+# --------------------------------
+# Align with Google C++ Style Guide, LLVM Coding Standards
+[*.{cpp,hpp,cxx,hxx}]
+indent_style = space
+indent_size = 2
+
+# --------------------------------
+# Objective-C in line with Google style
+# in Obj-C project add c,h to this group
+[*.{c,h,m,mm}]
+indent_style = space
+indent_size = 2
+
+# --------------------------------
+# Align with Linux kernel style
+[*.ld]
+indent_style = tab
+indent_size = 8
+
+[Makefile]
+indent_style = tab
+indent_size = 8
+
+[meson*]
+indent_style = space
+indent_size = 2
+
+# --------------------------------
+# Align with JavaScript Semistandard Style
+
+[*.{js,mjs,cjs,ts,jsx,tsx}]
+indent_style = space
+indent_size = 2
+
+[*.{css,scss}]
+indent_style = space
+indent_size = 2
+
+[*.{html,ejs}]
+indent_style = space
+indent_size = 2
+
+[*.{glsl,frag,vert}]
+indent_style = space
+indent_size = 2
+
+# --------------------------------
+# Align with Laravel
+
+[*.php]
+indent_style = space
+indent_size = 4
+
+# --------------------------------
+# Align with PEP8
+# use a wider project-specific line limit
+
+[*.py]
+max_line_length = 119
+indent_style = space
+indent_size = 4
+
+# --------------------------------
+# Align with https://github.com/realm/SwiftLint/
+
+[*.swift]
+indent_style = space
+indent_size = 4
+
+# --------------------------------
+[*.applescript]
+indent_style = tab
+indent_size = 2
+
+# --------------------------------
+
+[*.txt]
+indent_style = space
+indent_size = 2
+
+[*.{json,jsonc,yml,yaml}]
+indent_style = space
+indent_size = 2
+
+[*.md]
+indent_style = space
+indent_size = 2
+trim_trailing_whitespace = false
