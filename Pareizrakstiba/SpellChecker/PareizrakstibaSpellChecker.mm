@@ -98,8 +98,8 @@
         NSString *wordToCheck; //create string object for word
         [stringToCheckScanner scanCharactersFromSet:wordCharSet intoString:&wordToCheck];	// scan the stringToCheck as long as characters from wordCharSet are encountered
         // and accumulate characters into wordToCheck
-        // if word is in dictionary or or word is in user dictionary
-        if ((myHS -> spell (std::string ([wordToCheck UTF8String]))) || ([sender isWordInUserDictionaries:wordToCheck caseSensitive:YES]))
+        // if word is in user dictionary (cheap check) or word is in dictionary;
+        if (([sender isWordInUserDictionaries:wordToCheck caseSensitive:YES]) || (myHS -> spell (std::string ([wordToCheck UTF8String]))))
           {
             ++wordCountUntill;
             continue;
