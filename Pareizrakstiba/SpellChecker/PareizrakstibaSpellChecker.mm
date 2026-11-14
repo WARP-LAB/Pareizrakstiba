@@ -86,7 +86,18 @@
   // If the method only counts the words in the string object and does not spell checking
   if (countOnly)
   {
-    if (*wordCount) *wordCount = [[stringToCheck componentsSeparatedByString:@" "] count]; // get number of words in stringToCheck
+    // count words with scanner transitions without allocating an array
+    NSInteger wordCountTotal = 0;
+    while (![stringToCheckScanner isAtEnd])
+    {
+      [stringToCheckScanner scanUpToCharactersFromSet:wordCharSet intoString:nil]; // skip until the start of a word (whitespace is skipped automatically)
+      if (![stringToCheckScanner isAtEnd])
+      {
+        ++wordCountTotal;
+        [stringToCheckScanner scanCharactersFromSet:wordCharSet intoString:nil]; // consume the word
+      }
+    }
+    if (*wordCount) *wordCount = wordCountTotal; // pass number of words in stringToCheck
   }
   else { // if countOnly==NO, then we check spelling
     NSInteger wordCountUntill = 0;
