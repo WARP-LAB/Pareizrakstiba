@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -17,7 +17,7 @@
 		9384A36824AF37C000C4357D /* affentry.cxx in Sources */ = {isa = PBXBuildFile; fileRef = 9384A35824AF37C000C4357D /* affentry.cxx */; };
 		9384A36A24AF37C000C4357D /* replist.cxx in Sources */ = {isa = PBXBuildFile; fileRef = 9384A35D24AF37C000C4357D /* replist.cxx */; };
 		9384A36B24AF37C000C4357D /* phonet.cxx in Sources */ = {isa = PBXBuildFile; fileRef = 9384A35F24AF37C000C4357D /* phonet.cxx */; };
-		93AFEDC124AD318B006D328A /* Pareizrakstiba.icns in Resources */ = {isa = PBXBuildFile; fileRef = 93AFEDB724AD318B006D328A /* Pareizrakstiba.icns */; };
+		C0A300000000000000000003 /* Pareizrakstiba.icns in Resources */ = {isa = PBXBuildFile; fileRef = C0A300000000000000000002 /* Pareizrakstiba.icns */; };
 		93AFEDC924ADC590006D328A /* PareizrakstibaDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 93AFEDBD24AD318B006D328A /* PareizrakstibaDelegate.mm */; };
 		93AFEDCA24ADC84A006D328A /* PareizrakstibaSpellServer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 93AFEDBF24AD318B006D328A /* PareizrakstibaSpellServer.mm */; };
 		93AFEDCF24ADCAD7006D328A /* PareizrakstibaSpellChecker.mm in Sources */ = {isa = PBXBuildFile; fileRef = 93AFEDBA24AD318B006D328A /* PareizrakstibaSpellChecker.mm */; };
@@ -55,7 +55,6 @@
 		9384A35E24AF37C000C4357D /* suggestmgr.hxx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = suggestmgr.hxx; sourceTree = "<group>"; };
 		9384A35F24AF37C000C4357D /* phonet.cxx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = phonet.cxx; sourceTree = "<group>"; };
 		9384A36C24AF37DA00C4357D /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = config.h; path = vendors/hunspell/config.h; sourceTree = SOURCE_ROOT; };
-		93AFEDB724AD318B006D328A /* Pareizrakstiba.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Pareizrakstiba.icns; sourceTree = "<group>"; };
 		93AFEDB924AD318B006D328A /* PareizrakstibaSpellChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PareizrakstibaSpellChecker.h; sourceTree = "<group>"; };
 		93AFEDBA24AD318B006D328A /* PareizrakstibaSpellChecker.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PareizrakstibaSpellChecker.mm; sourceTree = "<group>"; };
 		93AFEDBC24AD318B006D328A /* PareizrakstibaDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PareizrakstibaDelegate.h; sourceTree = "<group>"; };
@@ -63,9 +62,16 @@
 		93AFEDBF24AD318B006D328A /* PareizrakstibaSpellServer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PareizrakstibaSpellServer.mm; sourceTree = "<group>"; };
 		93AFEDC024AD318B006D328A /* PareizrakstibaSpellServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PareizrakstibaSpellServer.h; sourceTree = "<group>"; };
 		93AFEE2524ADCD33006D328A /* Dictionaries */ = {isa = PBXFileReference; lastKnownFileType = folder; path = vendors/hunspell-dict.dv.lv/lv_LV; sourceTree = "<group>"; };
+		C0A100000000000000000002 /* Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Common.xcconfig; sourceTree = "<group>"; };
+		C0A100000000000000000003 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		C0A100000000000000000004 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
+		C0A100000000000000000005 /* Signing.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Signing.xcconfig; sourceTree = "<group>"; };
+		C0A100000000000000000006 /* Local.xcconfig.example */ = {isa = PBXFileReference; lastKnownFileType = text; path = Local.xcconfig.example; sourceTree = "<group>"; };
+		C0A200000000000000000002 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C0A200000000000000000003 /* Pareizrakstiba.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Pareizrakstiba.entitlements; sourceTree = "<group>"; };
+		C0A300000000000000000002 /* Pareizrakstiba.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Pareizrakstiba.icns; sourceTree = "<group>"; };
 		C17D05D81C67B38500C586E6 /* Pareizrakstiba.service */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pareizrakstiba.service; sourceTree = BUILT_PRODUCTS_DIR; };
-		C17D05DF1C67B38500C586E6 /* main.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
-		C17D05E61C67B38500C586E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C17D05DF1C67B38500C586E6 /* main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,9 +149,39 @@
 			path = SpellServer;
 			sourceTree = "<group>";
 		};
+		C0A100000000000000000001 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				C0A100000000000000000002 /* Common.xcconfig */,
+				C0A100000000000000000003 /* Debug.xcconfig */,
+				C0A100000000000000000004 /* Release.xcconfig */,
+				C0A100000000000000000005 /* Signing.xcconfig */,
+				C0A100000000000000000006 /* Local.xcconfig.example */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		C0A200000000000000000001 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				C0A200000000000000000002 /* Info.plist */,
+				C0A200000000000000000003 /* Pareizrakstiba.entitlements */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		C0A300000000000000000001 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C0A300000000000000000002 /* Pareizrakstiba.icns */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		C17D05CF1C67B38500C586E6 = {
 			isa = PBXGroup;
 			children = (
+				C0A100000000000000000001 /* Config */,
 				9384A34124AF37BF00C4357D /* hunspell */,
 				93AFEE2524ADCD33006D328A /* Dictionaries */,
 				C17D05DA1C67B38500C586E6 /* Pareizrakstiba */,
@@ -164,12 +200,12 @@
 		C17D05DA1C67B38500C586E6 /* Pareizrakstiba */ = {
 			isa = PBXGroup;
 			children = (
-				93AFEDB724AD318B006D328A /* Pareizrakstiba.icns */,
+				C17D05DF1C67B38500C586E6 /* main.mm */,
 				93AFEDB824AD318B006D328A /* SpellChecker */,
 				93AFEDBB24AD318B006D328A /* SpellDelegate */,
 				93AFEDBE24AD318B006D328A /* SpellServer */,
-				C17D05E61C67B38500C586E6 /* Info.plist */,
-				C17D05DF1C67B38500C586E6 /* main.mm */,
+				C0A300000000000000000001 /* Resources */,
+				C0A200000000000000000001 /* Support */,
 			);
 			path = Pareizrakstiba;
 			sourceTree = "<group>";
@@ -200,16 +236,12 @@
 		C17D05D01C67B38500C586E6 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1150;
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 2700;
 				ORGANIZATIONNAME = WARP;
-				TargetAttributes = {
-					C17D05D71C67B38500C586E6 = {
-						CreatedOnToolsVersion = 7.2;
-					};
-				};
 			};
 			buildConfigurationList = C17D05D31C67B38500C586E6 /* Build configuration list for PBXProject "Pareizrakstiba" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -232,7 +264,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				93AFEE2624ADCD33006D328A /* Dictionaries in Resources */,
-				93AFEDC124AD318B006D328A /* Pareizrakstiba.icns in Resources */,
+				C0A300000000000000000003 /* Pareizrakstiba.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,102 +297,15 @@
 /* Begin XCBuildConfiguration section */
 		C17D05E71C67B38500C586E6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C0A100000000000000000003 /* Debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = NO;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Services";
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
 		C17D05E81C67B38500C586E6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C0A100000000000000000004 /* Release.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = NO;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Services";
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				SDKROOT = macosx;
 			};
 			name = Release;
 		};
@@ -368,7 +313,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = Pareizrakstiba/Info.plist;
+				INFOPLIST_FILE = Pareizrakstiba/Support/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = lv.warp.Pareizrakstiba;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -380,7 +325,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = Pareizrakstiba/Info.plist;
+				INFOPLIST_FILE = Pareizrakstiba/Support/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = lv.warp.Pareizrakstiba;
 				PRODUCT_NAME = "$(TARGET_NAME)";

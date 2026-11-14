@@ -1,0 +1,13 @@
+// Signing.xcconfig
+// Code signing settings.
+//
+// Default is ad-hoc signing ("-" identity), which is how the project has
+// always built. For real Developer ID / team signing, copy
+// Local.xcconfig.example to Local.xcconfig (gitignored) and set your own
+// values there - Local.xcconfig is included last, so it wins.
+
+CODE_SIGN_IDENTITY = -
+CODE_SIGN_STYLE = Manual
+CODE_SIGN_ENTITLEMENTS = Pareizrakstiba/Support/Pareizrakstiba.entitlements
+
+#include? "Local.xcconfig"

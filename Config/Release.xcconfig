@@ -1,0 +1,7 @@
+// Release.xcconfig
+// Release configuration settings, on top of Common.xcconfig.
+
+#include "Common.xcconfig"
+
+DEBUG_INFORMATION_FORMAT = dwarf-with-dsym
+ENABLE_NS_ASSERTIONS = NO

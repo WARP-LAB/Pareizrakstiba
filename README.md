@@ -5,10 +5,13 @@ Service that adds support for system wide spellchecking in Latvian language.
 
 ## Requirements
 
-- Built for macOS 10.13+ (it could be built for older deployment targets).
-- Tested on 10.15.5. and 10.13.6
-- 64-bit only.
-- For yet older OS versions, see [Pareizrakstiba-Archive](https://github.com/WARP-LAB/Pareizrakstiba-Archive).
+- Built for macOS 12+
+- Tested on macOS 27 and macOS 12
+- Universal (Intel & Apple Silicon)
+
+## Older OS support
+
+See [Pareizrakstiba-Archive](https://github.com/WARP-LAB/Pareizrakstiba-Archive).
 
 ## Installation
 

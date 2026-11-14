@@ -1,0 +1,11 @@
+// Debug.xcconfig
+// Debug configuration settings, on top of Common.xcconfig.
+
+#include "Common.xcconfig"
+
+GCC_DYNAMIC_NO_PIC = NO
+GCC_OPTIMIZATION_LEVEL = 0
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) DEBUG=1
+DEBUG_INFORMATION_FORMAT = dwarf
+ENABLE_TESTABILITY = YES
+ONLY_ACTIVE_ARCH = YES

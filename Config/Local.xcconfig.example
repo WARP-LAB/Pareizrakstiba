@@ -1,0 +1,12 @@
+// Local.xcconfig
+// Machine-specific build overrides. Copy this file to Local.xcconfig and
+// adjust for your machine. Local.xcconfig is gitignored, so personal
+// settings never reach the repository. It is included last from
+// Signing.xcconfig, so values here override everything in Common,
+// Debug, Release and Signing.
+
+// Example - sign with a Developer ID certificate instead of ad-hoc:
+//
+//   CODE_SIGN_IDENTITY = Developer ID Application
+//   DEVELOPMENT_TEAM = ABCDE12345
+//   CODE_SIGN_STYLE = Automatic
