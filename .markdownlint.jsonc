@@ -1,0 +1,21 @@
+{
+  // my defaults
+  "default": true,
+  // https://github.com/DavidAnson/markdownlint/blob/main/doc/md010.md
+  "MD010": {
+    "code_blocks": false
+  },
+  // https://github.com/DavidAnson/markdownlint/blob/main/doc/md049.md
+  "MD049": {
+    "style": "underscore"
+  },
+  // https://github.com/DavidAnson/markdownlint/blob/main/doc/md050.md
+  "MD050": {
+    "style": "asterisk"
+  },
+  // https://github.com/DavidAnson/markdownlint/blob/main/doc/md013.md
+  "MD013": false,
+  // https://github.com/DavidAnson/markdownlint/blob/main/doc/md032.md
+  "MD032": false
+}
+
