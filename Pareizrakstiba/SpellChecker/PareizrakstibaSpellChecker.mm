@@ -33,8 +33,8 @@ struct EncodingMapping {
 {
   self = [super init] ;
   if (self != nil) {
-    myHS = new Hunspell ([[ [ NSBundle bundleForClass:[self class] ] pathForResource:@"lv_LV" ofType:@"aff" inDirectory:@"Dictionaries/lv_LV-1.4.0"] UTF8String],
-                         [[ [ NSBundle bundleForClass:[self class] ] pathForResource:@"lv_LV" ofType:@"dic" inDirectory:@"Dictionaries/lv_LV-1.4.0"] UTF8String]);
+    myHS = new Hunspell ([[ [ NSBundle bundleForClass:[self class] ] pathForResource:@"lv_LV" ofType:@"aff" inDirectory:@"lv_LV"] UTF8String],
+                         [[ [ NSBundle bundleForClass:[self class] ] pathForResource:@"lv_LV" ofType:@"dic" inDirectory:@"lv_LV"] UTF8String]);
 
 
     // Charset for words (alphanumerical and .)

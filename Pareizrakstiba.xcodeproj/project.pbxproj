@@ -62,7 +62,7 @@
 		93AFEDBD24AD318B006D328A /* PareizrakstibaDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PareizrakstibaDelegate.mm; sourceTree = "<group>"; };
 		93AFEDBF24AD318B006D328A /* PareizrakstibaSpellServer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PareizrakstibaSpellServer.mm; sourceTree = "<group>"; };
 		93AFEDC024AD318B006D328A /* PareizrakstibaSpellServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PareizrakstibaSpellServer.h; sourceTree = "<group>"; };
-		93AFEE2524ADCD33006D328A /* Dictionaries */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Dictionaries; sourceTree = "<group>"; };
+		93AFEE2524ADCD33006D328A /* Dictionaries */ = {isa = PBXFileReference; lastKnownFileType = folder; path = vendors/hunspell-dict.dv.lv/lv_LV; sourceTree = "<group>"; };
 		C17D05D81C67B38500C586E6 /* Pareizrakstiba.service */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pareizrakstiba.service; sourceTree = BUILT_PRODUCTS_DIR; };
 		C17D05DF1C67B38500C586E6 /* main.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
 		C17D05E61C67B38500C586E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
