@@ -1,6 +1,6 @@
 /*
  PareizrakstibaSpellChecker.h
- 
+
  Pareizrakstība - Latviešu valodas pareizrakstības pārbaude macOS operētājsistēmai
  Pareizrakstiba - Latvian spellcheck for macOS operating system
  Copyright (C) 2008-2015 Reinis Adovičs a.k.a. kroko
@@ -25,11 +25,12 @@
 #import <CoreFoundation/CoreFoundation.h>
 #import "hunspell.hxx"
 
-class	Hunspell;
+class Hunspell;
 
 @interface PareizrakstibaSpellChecker : NSObject {
-	Hunspell* myHS;
-    NSMutableCharacterSet *wordCharSet;
+  Hunspell* myHS;
+  NSMutableCharacterSet *wordCharSet;
+  NSCache *spellCache;
 }
 - (id)init;
 - (void) dealloc;

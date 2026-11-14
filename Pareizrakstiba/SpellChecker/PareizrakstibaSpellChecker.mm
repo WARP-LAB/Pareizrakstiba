@@ -22,6 +22,10 @@
 
 #import "PareizrakstibaSpellChecker.h"
 
+@interface PareizrakstibaSpellChecker ()
+- (BOOL) isWordSpelledCorrectly:(NSString *)word;
+@end
+
 @implementation PareizrakstibaSpellChecker
 
 - (id)init
@@ -42,6 +46,11 @@
 
     wordCharSet = [NSMutableCharacterSet alphanumericCharacterSet];
     [wordCharSet addCharactersInString:@"."];
+
+    // Memoization of hunspell spell() verdicts
+    spellCache = [[NSCache alloc] init];
+    // soft bound
+    [spellCache setCountLimit:4096];
   }
   return self;
 }
@@ -50,7 +59,24 @@
 {
   delete myHS;
   myHS = NULL;
+  [spellCache release];
+  spellCache = NULL;
   [super dealloc];
+}
+
+// Hunspell spell() verdict for a word.
+// Spell-as-you-type re-checks every word of the string on each keystroke
+// hunspell has no result cache, thus repeated verdicts are served from here
+- (BOOL) isWordSpelledCorrectly:(NSString *)word
+{
+  NSNumber *cachedVerdict = [spellCache objectForKey:word];
+  if (cachedVerdict != nil) {
+    return [cachedVerdict boolValue];
+  }
+
+  BOOL spelledCorrectly = myHS -> spell (std::string ([word UTF8String]));
+  [spellCache setObject:[NSNumber numberWithBool:spelledCorrectly] forKey:word];
+  return spelledCorrectly;
 }
 
 // Suggest guesses for the correct spelling of the given misspelled word
@@ -110,7 +136,7 @@
         [stringToCheckScanner scanCharactersFromSet:wordCharSet intoString:&wordToCheck];	// scan the stringToCheck as long as characters from wordCharSet are encountered
         // and accumulate characters into wordToCheck
         // if word is in user dictionary (cheap check) or word is in dictionary;
-        if (([sender isWordInUserDictionaries:wordToCheck caseSensitive:YES]) || (myHS -> spell (std::string ([wordToCheck UTF8String]))))
+        if (([sender isWordInUserDictionaries:wordToCheck caseSensitive:YES]) || [self isWordSpelledCorrectly:wordToCheck])
           {
             ++wordCountUntill;
             continue;
