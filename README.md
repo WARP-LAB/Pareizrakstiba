@@ -116,6 +116,16 @@ defaults write NSGlobalDomain NSPreferredSpellServerLanguage 'lv'
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool FALSE
 ```
 
+## Clangd
+
+Been using [clangd](https://clangd.llvm.org) for long time. And on VS Code that I use for this project now that means using [vscode-clangd](https://github.com/clangd/vscode-clangd?tab=readme-ov-file) instead of MS IntelliSense.
+
+This will generate `compile_commands.json` to make clangd lang server happy
+
+```zsh
+./clangd_generate.sh
+```
+
 ## Version history
 
 See [CHANGELOG.md](CHANGELOG.md).

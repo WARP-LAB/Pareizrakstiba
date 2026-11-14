@@ -1,0 +1,9 @@
+# https://clangd.llvm.org/config
+# CompileFlags:
+#   Compiler: clang
+#   Add: [-std=c17, -Wall, -Wextra, -Wpedantic]
+
+CompileFlags:
+  Compiler: clang
+  # dont add here some defaults, just expect that compile_commands.json is generated
+  # Add: [-xobjective-c++, -std=gnu++14, -Wall, -Wextra, -Wpedantic]

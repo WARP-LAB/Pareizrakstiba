@@ -1,0 +1,35 @@
+{
+  // in case editorconfig is missing
+  "files.eol": "\n",
+  "editor.insertSpaces": true,
+  "editor.tabSize": 2,
+  "editor.trimAutoWhitespace": false,
+  "files.insertFinalNewline": true,
+
+  // MS IntelliSense disabled as we use clangd
+  "C_Cpp.intelliSenseEngine": "disabled",
+  "C_Cpp.autocomplete": "disabled",
+  // ----------------
+  // Clangd
+  // https://github.com/clangd/vscode-clangd
+  // https://clangd.llvm.org/config
+  "clangd.path": "/usr/bin/clangd",
+  "clangd.useScriptAsExecutable": false,
+  "clangd.arguments": [
+    "--enable-config"
+  ],
+  "clangd.serverCompletionRanking": true,
+  "clangd.restartAfterCrash": true,
+  "clangd.enableCodeCompletion": true,
+  "clangd.enableHover": true,
+  "clangd.enable": true,
+  //
+  "[c][objective-c][objective-cpp]": {
+      "editor.formatOnType": true,
+      "editor.formatOnSave": false,
+      "editor.formatOnPaste": true,
+      "editor.insertSpaces": true,
+      "editor.tabSize": 2,
+      "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd"
+  }
+}
