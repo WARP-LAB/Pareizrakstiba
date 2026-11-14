@@ -5,7 +5,7 @@ Service that adds support for system wide spellchecking in Latvian language.
 
 ## Requirements
 
-- Built for macOS 12+
+- macOS 12+
 - Tested on macOS 27 and macOS 12
 - Universal (Intel & Apple Silicon)
 
@@ -20,15 +20,14 @@ See [Pareizrakstiba-Archive](https://github.com/WARP-LAB/Pareizrakstiba-Archive)
 - **Check README.pdf within installer package before continuing with Installer.app.**
 - If you wish to use this service then before running _Installer_ you have enable the possibility of running unsigned apps on macOS (see README.pdf).
 
-## Notes
+## Usage
 
 - Check out official Apple macOS User Guide for [Check spelling and grammar on Mac](https://support.apple.com/en-gb/guide/mac-help/mchlp2299/mac)
 - Make sure that in applications Latvian spellcheck is selected _Edit : Spelling and Grammar : Show Spelling and Grammar : Latviešu (Pareizrakstiba)_
-- Play around with settings under _System Preferences : Keyboard : Text_. Here you can also set preferred default spelling language (_Installer_ also has a step which lets you choose Latvian as preferred).
+- _LibreOffice_ et al. users have no need to download and install dictionaries from within these apps, for the mentioned applications use macOS system wide spellcheck. Besides, when using Pareizrakstība in the applications and adding new words, they will apply to the whole OS.
 - Rich text content in _Google Docs, Sheets & Slides_ on _Safari_, _Chrome_ and others can not be _reached_ by macOS system wide spellcheck because of how Google has coded their web applications.
-- _LibreOffice_ / _OpenOffice_ et al. users have no need to download and install dictionaries from within these apps, for the mentioned applications use macOS system wide spellcheck. Besides, when using Pareizrakstība in the applications and adding new words, they will apply to the whole OS.
-- Learned words are kept in `~/Library/Spelling/`
-- Since Mac OS X 10.6 shortcut for the rarely used autocompletion list is either `Option+Esc` or `F5`, previously it was `Esc`.
+- Learned spelling by user are kept in `~/Library/Spelling/` for the user.
+- Shortcut for the rarely used autocompletion list is either `Option+Esc` or `F5` (before Mac OS X 10.6 it was `Esc`).
 
 ## Additional information
 
@@ -40,21 +39,24 @@ See [Pareizrakstiba-Archive](https://github.com/WARP-LAB/Pareizrakstiba-Archive)
 
 ### Build
 
-```sh
+```zsh
 git clone --recursive git@github.com:WARP-LAB/Pareizrakstiba.git
 cd Pareizrakstiba
-$(echo $SHELL) build.sh
-open build/Release
+./build.sh --help # specify config debug|release, zip yes|no
+./build.sh
+open build/Release # or build/Debug
 ```
 
 The resulting product is `Pareizrakstiba.service` bundle.
 
 #### If already exists on the system, kill Pareizrakstiba service and remove it
 
-```sh
+You might not need sudo if it was running as user
+
+```zsh
 sudo killall Pareizrakstiba > /dev/null 2>&1
-sudo rm -rf ~/Library/Services/Pareizrakstiba.service
 sudo rm -rf /Library/Services/Pareizrakstiba.service
+sudo rm -rf ~/Library/Services/Pareizrakstiba.service
 sudo -k
 ```
 
@@ -66,8 +68,23 @@ Move the built `Pareizrakstiba.service` bundle to one of the following locations
 
 #### Flush services
 
-```sh
+```zsh
 /System/Library/CoreServices/pbs -flush
+```
+
+## Spelling configuration via CLI
+
+A few one-liners to avoid digging through deeply buried checkboxes in macOS Settings.
+
+```zsh
+# Disable automatic language detection
+defaults write NSGlobalDomain NSSpellCheckerAutomaticallyIdentifiesLanguages -bool FALSE
+
+# Try to force Latvian as the default language when launching applications
+defaults write NSGlobalDomain NSPreferredSpellServerLanguage 'lv'
+
+# Disable system-wide autocorrect
+defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool FALSE
 ```
 
 ## Version history
@@ -76,9 +93,9 @@ See [CHANGELOG.md](CHANGELOG.md).
 
 ## OS API / behaviour bugs
 
-Bugs as reported to Apple by Pareizrakstība developer:
-- <https://lists.apple.com/archives/Cocoa-dev/2009/Oct/msg00637.html>
-- <https://lists.apple.com/archives/Cocoa-dev/2009/Oct/msg01212.html>
+Never resolved bugs as reported to Apple (OpenRadar):
+- [https://lists.apple.com/archives/cocoa-dev/2009/oct/msg00637.html](https://web.archive.org/web/20240812193115/https://lists.apple.com/archives/cocoa-dev/2009/oct/msg00637.html)
+- [https://lists.apple.com/archives/cocoa-dev/2009/Oct/msg01212.html](https://web.archive.org/web/20240724003520/https://lists.apple.com/archives/cocoa-dev/2009/Oct/msg01212.html)
 
 ## License
 
