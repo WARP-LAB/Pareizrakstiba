@@ -30,11 +30,10 @@ Service that adds support for system wide spellchecking in Latvian language.
 - Learned spelling by user are kept in `~/Library/Spelling/` for the user.
 - Shortcut for the rarely used autocompletion list is either `Option+Esc` or `F5` (before Mac OS X 10.6 it was `Esc`).
 
-## Additional information
+## Installation sidefects
 
-- Pareizrakstība removes all previous versions.
-- Pareizrakstība completely removes CheckSpell.
-- Pareizrakstība completely removes cocoAspell.
+Pareizrakstība upon install checks for and removes all previous versions.
+Pareizrakstība does not check for CheckSpell and cocoAspell (and pspell). Historically it did, as first versions were playing with that.
 
 ## Building from source
 
