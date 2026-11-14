@@ -17,7 +17,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Hunspell updated to latest stable [1.7.6](https://github.com/hunspell/hunspell/releases/tag/v1.7.6)
 - Latvian Hunspell dictionary upgraded to 1.5.0 (2026-04-08)
 
-### Depreciated
+### Deprecated
 
 - macOS below 12
 - CheckSpell and cocoAspell checks

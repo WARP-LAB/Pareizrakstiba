@@ -75,7 +75,7 @@ vendors/hunspell/check-update.sh
 brew install automake libtool gettext
 
 # generate <vendors/hunspell/config.h>
-HUNSPELL_CONFIGURE_PATH="/opt/homebrew/bin:/usr/bin:/bin" vendors/hunspell/generate-config.sh)
+HUNSPELL_CONFIGURE_PATH="/opt/homebrew/bin:/usr/bin:/bin" vendors/hunspell/generate-config.sh
 ```
 
 #### If already exists on the system, kill Pareizrakstiba service and remove it
