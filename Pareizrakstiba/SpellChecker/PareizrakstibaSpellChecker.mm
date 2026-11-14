@@ -1,6 +1,6 @@
 /*
  PareizrakstibaSpellChecker.mm
- 
+
  Pareizrakstība - Latviešu valodas pareizrakstības pārbaude macOS operētājsistēmai
  Pareizrakstiba - Latvian spellcheck for macOS operating system
  Copyright (C) 2008-2015 Reinis Adovičs a.k.a. kroko
@@ -21,11 +21,6 @@
  */
 
 #import "PareizrakstibaSpellChecker.h"
-
-struct EncodingMapping {
-  const char* name;
-  CFStringEncoding encoding;
-};
 
 @implementation PareizrakstibaSpellChecker
 
@@ -70,18 +65,10 @@ struct EncodingMapping {
   NSLog(@"Trying to get suggestions for string: %s", [word UTF8String]);
 #endif
 
-#if DICTENCODE
-  NSInteger hsSuggestListCount = myHS -> suggest (&hsSuggestList, [word cStringUsingEncoding:(NSStringEncoding)[self hunspellDictEncodingToNSEncoding:myHS->get_dic_encoding()]]); // returns number of suggestions and write them into hsSuggestList array
-#else
   NSInteger hsSuggestListCount = myHS -> suggest (&hsSuggestList, [word UTF8String]); // returns number of suggestions and write them into hsSuggestList array
-#endif
 
   for (NSInteger i = 0; i < hsSuggestListCount; ++i) { // for all suggestions
-#if DICTENCODE
-    [guessesForWord addObject:[NSString stringWithCString: hsSuggestList[i] encoding:(NSStringEncoding)[self hunspellDictEncodingToNSEncoding:myHS->get_dic_encoding()]]];
-#else
     [guessesForWord addObject:[NSString stringWithUTF8String:hsSuggestList[i]]]; // add suggestion to suggestions array from sugList array
-#endif
   }
   if(hsSuggestList) myHS->free_list(&hsSuggestList, hsSuggestListCount); // clean suggest list
 
@@ -114,12 +101,7 @@ struct EncodingMapping {
         [stringToCheckScanner scanCharactersFromSet:wordCharSet intoString:&wordToCheck];	// scan the stringToCheck as long as characters from wordCharSet are encountered
         // and accumulate characters into wordToCheck
         // if word is in dictionary or or word is in user dictionary
-
-#if DICTENCODE
-        if ((myHS -> spell ([wordToCheck cStringUsingEncoding:(NSStringEncoding)[self hunspellDictEncodingToNSEncoding:myHS->get_dic_encoding()]])) || ([sender isWordInUserDictionaries:wordToCheck caseSensitive:YES]))
-#else
-          if ((myHS -> spell ([wordToCheck UTF8String])) || ([sender isWordInUserDictionaries:wordToCheck caseSensitive:YES]))
-#endif
+        if ((myHS -> spell ([wordToCheck UTF8String])) || ([sender isWordInUserDictionaries:wordToCheck caseSensitive:YES]))
           {
             ++wordCountUntill;
             continue;
@@ -251,87 +233,6 @@ suggestCompletionsForPartialWordRange:(NSRange)range
   //
   // This is introduced in 10.7 and is required method.
   // /dev/null this one
-}
-
-- (NSStringEncoding) hunspellDictEncodingToNSEncoding:(const char*)encoding
-{
-  EncodingMapping mappings[] = {
-    {"UTF-8",kCFStringEncodingUTF8}, // Arabic, Az, Turkish
-    {"ISO8859-1",kCFStringEncodingISOLatin1}, // Catalan, Danish, German, English, Spanish, Basque, gl, Italian, la, Dutch, Portuguese, Swedish
-    {"ISO8859-2",kCFStringEncodingISOLatin2}, // Czech, Croatian, Polish
-    {"ISO8859-3",kCFStringEncodingISOLatin3},
-    {"ISO8859-4",kCFStringEncodingISOLatin4},
-    {"ISO8859-5",kCFStringEncodingISOLatinCyrillic},
-    {"ISO8859-6",kCFStringEncodingISOLatinArabic},
-    {"ISO8859-7",kCFStringEncodingISOLatinGreek},
-    {"ISO8859-8",kCFStringEncodingISOLatinHebrew},
-    {"ISO8859-9",kCFStringEncodingISOLatin5},
-    {"ISO8859-10",kCFStringEncodingISOLatin6},
-    {"ISO8859-11",kCFStringEncodingISOLatinThai},
-    {"ISO8859-13",kCFStringEncodingISOLatin7}, // Greek, Latvian
-    {"ISO8859-14",kCFStringEncodingISOLatin8},
-    {"ISO8859-15",kCFStringEncodingISOLatin9}, // French
-    {"ISO8859-16",kCFStringEncodingISOLatin10},
-    {"RFC2319",kCFStringEncodingKOI8_U},
-    {"KOI8-U",kCFStringEncodingKOI8_U}, // Ukrainian
-    {"KOI8-R",kCFStringEncodingKOI8_R},						// Russian
-    {"microsoft-cp1251",kCFStringEncodingWindowsCyrillic},
-    {"ISCII-DEVANAGARI",kCFStringEncodingMacDevanagari},
-    {"microsoft-cp437",kCFStringEncodingDOSLatinUS},
-    {"microsoft-cp437",kCFStringEncodingDOSGreek},
-    {"microsoft-cp775",kCFStringEncodingDOSBalticRim},
-    {"microsoft-cp850",kCFStringEncodingDOSLatin1},
-    {"microsoft-cp851",kCFStringEncodingDOSGreek1},
-    {"microsoft-cp852",kCFStringEncodingDOSLatin2},
-    {"microsoft-cp855",kCFStringEncodingDOSCyrillic},
-    {"microsoft-cp857",kCFStringEncodingDOSTurkish},
-    {"microsoft-cp860",kCFStringEncodingDOSPortuguese},
-    {"microsoft-cp861",kCFStringEncodingDOSIcelandic},
-    {"microsoft-cp862",kCFStringEncodingDOSHebrew},
-    {"microsoft-cp863",kCFStringEncodingDOSCanadianFrench},
-    {"microsoft-cp864",kCFStringEncodingDOSArabic},
-    {"microsoft-cp865",kCFStringEncodingDOSNordic},
-    {"microsoft-cp866",kCFStringEncodingDOSRussian},
-    {"microsoft-cp869",kCFStringEncodingDOSGreek2},
-    {"microsoft-cp874",kCFStringEncodingDOSThai},
-    {"microsoft-cp932",kCFStringEncodingDOSJapanese},
-    {"microsoft-cp936",kCFStringEncodingDOSChineseSimplif},
-    {"microsoft-cp949",kCFStringEncodingDOSKorean},
-    {"microsoft-cp950",kCFStringEncodingDOSChineseTrad},
-    {"microsoft-cp1250",kCFStringEncodingWindowsLatin2},
-    {"microsoft-cp1251",kCFStringEncodingWindowsCyrillic},
-    {"microsoft-cp1253",kCFStringEncodingWindowsGreek},
-    {"microsoft-cp1254",kCFStringEncodingWindowsLatin5},
-    {"microsoft-cp1255",kCFStringEncodingWindowsHebrew},
-    {"microsoft-cp1256",kCFStringEncodingWindowsArabic},
-    {"microsoft-cp1257",kCFStringEncodingWindowsBalticRim},
-    {"microsoft-cp1258",kCFStringEncodingWindowsVietnamese},
-    {"microsoft-cp1361",kCFStringEncodingWindowsKoreanJohab},
-  };
-
-  for (unsigned int i = 0; i < sizeof(mappings)/sizeof(EncodingMapping); ++i) {
-    if (strcmp(encoding,mappings[i].name) == 0)
-      // unsigned long
-      return CFStringConvertEncodingToNSStringEncoding(mappings[i].encoding);
-  }
-
-  CFStringEncoding result = CFStringConvertIANACharSetNameToEncoding(CFStringRef([NSString stringWithCString:encoding encoding:NSUTF8StringEncoding]));
-  if (result != kCFStringEncodingInvalidId) {
-    return CFStringConvertEncodingToNSStringEncoding(result);
-  }
-
-  const NSStringEncoding* encodings = [NSString availableStringEncodings];
-  while (*encodings){
-    NSString* encodingName = [NSString localizedNameOfStringEncoding:*encodings];
-    if (strstr ([encodingName UTF8String], encoding) != 0) {
-      return *encodings;
-    }
-    ++encodings;
-  }
-
-  //    fprintf(stderr, "Pareizrakstiba error: unrecognized encoding: %s. Setting to ASCII.\n",encoding);
-  NSLog(@"WARPDEBUG Pareizrakstiba Pareizrakstiba error: unrecognized encoding: Setting to ASCII.\n");
-  return NSASCIIStringEncoding;
 }
 
 @end
