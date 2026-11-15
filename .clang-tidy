@@ -13,6 +13,6 @@ Checks: >
 WarningsAsErrors:             ''
 HeaderFileExtensions:         ['h','hh','hpp','hxx']
 ImplementationFileExtensions: ['c','cc','cpp','cxx','m','mm']
-HeaderFilterRegex:            ''
+HeaderFilterRegex:            '^(Pareizrakstiba|Config|Installer)/'
 FormatStyle:                  file
 InheritParentConfig:          false
