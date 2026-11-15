@@ -16,10 +16,8 @@ Service that adds support for system wide spellchecking in Latvian language.
 
 ## Installation
 
-- See [Releases](https://github.com/WARP-LAB/Pareizrakstiba/releases).
-- Use Installer package that is attached to release (usually named `Pareizrakstiba_<VERSION>_Installer.zip`).
-- **Check README.pdf within installer package before continuing with Installer.app.**
-- If you wish to use this service then before running _Installer_ you have enable the possibility of running unsigned apps on macOS (see README.pdf).
+- See [latest release](https://github.com/WARP-LAB/Pareizrakstiba/releases).
+  - For 4.2.0 no installer, just zipped, unsigned build
 
 ## Usage
 
