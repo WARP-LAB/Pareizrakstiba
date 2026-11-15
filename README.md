@@ -1,7 +1,7 @@
 # Pareizrakstība
 
-Pareizrakstība - Latvian spellcheck for macOS operating system.
-Service that adds support for system wide spellchecking in Latvian language.
+Pareizrakstība - Latvian spellcheck for the macOS operating system.
+Service that adds support for system-wide spell checking in the Latvian language.
 
 ## Requirements
 
@@ -17,21 +17,22 @@ Service that adds support for system wide spellchecking in Latvian language.
 ## Installation
 
 - See [latest release](https://github.com/WARP-LAB/Pareizrakstiba/releases).
-  - For 4.2.0 no installer, just zipped, unsigned build
+  - For 4.2.0 no installer, just a zipped, unsigned build
 
 ## Usage
 
 - Check out official Apple macOS User Guide for [Check spelling and grammar on Mac](https://support.apple.com/en-gb/guide/mac-help/mchlp2299/mac)
-- Make sure that in applications Latvian spellcheck is selected _Edit : Spelling and Grammar : Show Spelling and Grammar : Latviešu (Pareizrakstiba)_
-- _LibreOffice_ et al. users have no need to download and install dictionaries from within these apps, for the mentioned applications use macOS system wide spellcheck. Besides, when using Pareizrakstība in the applications and adding new words, they will apply to the whole OS.
-- Rich text content in _Google Docs, Sheets & Slides_ on _Safari_, _Chrome_ and others can not be _reached_ by macOS system wide spellcheck because of how Google has coded their web applications.
-- Learned spelling by user are kept in `~/Library/Spelling/` for the user.
-- Shortcut for the rarely used autocompletion list is either `Option+Esc` or `F5` (before Mac OS X 10.6 it was `Esc`).
+- Covers all apps that use the macOS spelling engine. A quick way to detect support is if the app has _Edit : Spelling and Grammar_ menu entry. Only some don't.
+- In applications, make sure that Latvian spellcheck is selected: _Edit : Spelling and Grammar : Show Spelling and Grammar : Latviešu (Pareizrakstiba)_
+- _LibreOffice_ et al. users have no need to download and install dictionaries from within these apps, as the mentioned applications use the macOS system-wide spell checking. Besides, when using Pareizrakstība in the applications and adding new words, they will apply to the whole OS.
+- Rich text content in _Google Docs, Sheets & Slides_ on _Safari_, _Chrome_ and others cannot be _reached_ by the macOS system-wide spell checking because of how Google has coded its web applications.
+- Spelling learned by the user is kept in `~/Library/Spelling/` for the user.
+- The shortcut for the rarely used autocompletion list is either `Option+Esc` or `F5` (before Mac OS X 10.6 it was `Esc`).
 
-## Installation sidefects
+## Installation side effects
 
-Pareizrakstība upon install checks for and removes all previous versions.
-Pareizrakstība does not check for CheckSpell and cocoAspell (and pspell). Historically it did, as first versions were playing with that.
+Upon installation, Pareizrakstība checks for and removes all previous versions.
+Pareizrakstība does not check for CheckSpell and cocoAspell (or pspell). Historically it did, as first versions were playing with that.
 
 ## Building from source
 
@@ -52,15 +53,15 @@ git clone --recurse-submodules git@github.com:WARP-LAB/Pareizrakstiba.git
 open build/Release # or build/Debug
 ```
 
-The resulting product is `Pareizrakstiba.service` bundle (zipped by default).
+The resulting product is the `Pareizrakstiba.service` bundle (zipped by default).
 
 ### Hunspell submodule management
 
-This is optional step.
+This is an optional step.
 
-Some helper scripts to pull in newer version and to reconfigure Hunspell if needed.
+Some helper scripts to pull in a newer version and to reconfigure Hunspell if needed.
 
-To (re)configure some extra (as in does not ship with macOS / Xcode CLT) build-time tooling is needed:
+To (re)configure, some extra build-time tooling is needed (as in, tooling that does not ship with macOS / Xcode CLT):
 - `autotools` (namely `autoconf`, `automake`)
 - `autopoint` (from `gettext`)
 - `libtool` from GNU instead of Apple's (it will be advertised as `glibtoolize`)
@@ -76,9 +77,12 @@ brew install automake libtool gettext
 HUNSPELL_CONFIGURE_PATH="/opt/homebrew/bin:/usr/bin:/bin" vendors/hunspell/generate-config.sh
 ```
 
-#### If already exists on the system, kill Pareizrakstiba service and remove it
+## Manual putting in place
 
-You might not need sudo if it was running as user
+### Stop and remove older version
+
+If it already exists on the system, kill the Pareizrakstiba service and remove it.
+You might not need sudo if it was running as the user
 
 ```zsh
 sudo killall Pareizrakstiba > /dev/null 2>&1
@@ -87,13 +91,13 @@ sudo rm -rf ~/Library/Services/Pareizrakstiba.service
 sudo -k
 ```
 
-#### Move the product to the correct install path
+### Move the product to the correct install path
 
 Move the built `Pareizrakstiba.service` bundle to one of the following locations
-- `~/Library/Services` for current user (create directory, if needed)
+- `~/Library/Services` for the current user (create directory, if needed)
 - `/Library/Services` for all users (check permissions)
 
-#### Flush services
+### Flush services
 
 ```zsh
 /System/Library/CoreServices/pbs -flush
@@ -116,9 +120,9 @@ defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool FALSE
 
 ## Clangd
 
-Been using [clangd](https://clangd.llvm.org) for long time. And on VS Code that I use for this project now that means using [vscode-clangd](https://github.com/clangd/vscode-clangd?tab=readme-ov-file) instead of MS IntelliSense.
+Been using [clangd](https://clangd.llvm.org) for a long time. And on VS Code, which I use for this project, that now means using [vscode-clangd](https://github.com/clangd/vscode-clangd?tab=readme-ov-file) instead of MS IntelliSense.
 
-This will generate `compile_commands.json` to make clangd lang server happy
+This will generate `compile_commands.json` to make the clangd language server happy
 
 ```zsh
 ./clangd_generate.sh
@@ -130,7 +134,7 @@ See [CHANGELOG.md](CHANGELOG.md).
 
 ## OS API / behaviour bugs
 
-Never resolved bugs as reported to Apple (OpenRadar):
+Bugs reported to Apple (OpenRadar), never resolved:
 - [https://lists.apple.com/archives/cocoa-dev/2009/oct/msg00637.html](https://web.archive.org/web/20240812193115/https://lists.apple.com/archives/cocoa-dev/2009/oct/msg00637.html)
 - [https://lists.apple.com/archives/cocoa-dev/2009/Oct/msg01212.html](https://web.archive.org/web/20240724003520/https://lists.apple.com/archives/cocoa-dev/2009/Oct/msg01212.html)
 
