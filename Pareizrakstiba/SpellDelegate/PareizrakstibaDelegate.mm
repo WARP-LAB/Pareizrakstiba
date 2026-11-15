@@ -1,9 +1,9 @@
 /*
  PareizrakstibaDelegate.mm
- 
+
  Pareizrakstība - Latviešu valodas pareizrakstības pārbaude macOS operētājsistēmai
  Pareizrakstiba - Latvian spellcheck for macOS operating system
- Copyright (C) 2008-2015 Reinis Adovičs a.k.a. kroko
+ Copyright (C) 2008-2026 Reinis Adovičs a.k.a. kroko
 
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License

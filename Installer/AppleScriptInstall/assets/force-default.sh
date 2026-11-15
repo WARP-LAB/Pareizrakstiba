@@ -2,7 +2,7 @@
 
 # Pareizrakstība - Latviešu valodas pareizrakstības pārbaude macOS operētājsistēmai
 # Pareizrakstiba - Latvian spellcheck for macOS operating system
-# Copyright (C) 2008-2020 Reinis Adovičs a.k.a. kroko
+# Copyright (C) 2008-2026 Reinis Adovičs a.k.a. kroko
 
 # current dir
 CURRENT_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )

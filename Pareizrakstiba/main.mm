@@ -3,7 +3,7 @@
 
  Pareizrakstība - Latviešu valodas pareizrakstības pārbaude macOS operētājsistēmai
  Pareizrakstiba - Latvian spellcheck for macOS operating system
- Copyright (C) 2008-2015 Reinis Adovičs a.k.a. kroko
+ Copyright (C) 2008-2026 Reinis Adovičs a.k.a. kroko
 
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
@@ -26,7 +26,7 @@
 
 int main(int argc, const char * argv[])
 {
-  NSLog(@"WARPDEBUG Pareizrakstiba - 2020.01 (c) 2008-2020 kroko\n");
+  NSLog(@"WARPDEBUG Pareizrakstiba - 2020.01 (c) 2008-2026 kroko\n");
   @autoreleasepool {
     PareizrakstibaSpellServer *pareizrakstibaSpellServer = [[PareizrakstibaSpellServer alloc] init];
     // vendor @"Apple" or @"Pareizrakstiba"
