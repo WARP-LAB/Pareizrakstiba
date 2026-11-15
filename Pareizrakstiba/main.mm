@@ -26,7 +26,7 @@
 
 int main(int argc, const char * argv[])
 {
-  NSLog(@"WARPDEBUG Pareizrakstiba - 2020.01 (c) 2008-2026 kroko\n");
+  NSLog(@"WARPDEBUG Pareizrakstiba - 4.2.0 (c) 2008-2026 kroko\n");
   @autoreleasepool {
     PareizrakstibaSpellServer *pareizrakstibaSpellServer = [[PareizrakstibaSpellServer alloc] init];
     // vendor @"Apple" or @"Pareizrakstiba"

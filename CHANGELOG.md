@@ -8,6 +8,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+## [4.2.0] - 2026-11-15
+
 ### Added
 
 - macOS 27 support
@@ -16,6 +18,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 - Hunspell updated to latest stable [1.7.6](https://github.com/hunspell/hunspell/releases/tag/v1.7.6)
 - Latvian Hunspell dictionary upgraded to 1.5.0 (2026-04-08)
+- Faster spell checking while typing (hunspell word verdicts are cached, and user dictionary words are checked before the dictionary)
 
 ### Deprecated
 
