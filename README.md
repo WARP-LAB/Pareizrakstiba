@@ -74,7 +74,8 @@ vendors/hunspell/check-update.sh
 brew install automake libtool gettext
 
 # generate <vendors/hunspell/config.h>
-HUNSPELL_CONFIGURE_PATH="/opt/homebrew/bin:/usr/bin:/bin" vendors/hunspell/generate-config.sh
+HUNSPELL_CONFIGURE_PATH="/opt/homebrew/bin:/usr/bin:/bin" \
+vendors/hunspell/generate-config.sh
 ```
 
 ## Manual putting in place
