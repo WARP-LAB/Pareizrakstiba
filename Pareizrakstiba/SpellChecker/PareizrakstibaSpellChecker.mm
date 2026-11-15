@@ -44,7 +44,7 @@
     // After substarcting last nonalphanumerical characters, we get "garumz;ime", spell that.
     // Although haven't tested, it seems expensive for me.
 
-    wordCharSet = [NSMutableCharacterSet alphanumericCharacterSet];
+    wordCharSet = [[NSMutableCharacterSet alphanumericCharacterSet] retain];
     [wordCharSet addCharactersInString:@"."];
 
     // Memoization of hunspell spell() verdicts
@@ -59,6 +59,8 @@
 {
   delete myHS;
   myHS = NULL;
+  [wordCharSet release];
+  wordCharSet = NULL;
   [spellCache release];
   spellCache = NULL;
   [super dealloc];
@@ -93,7 +95,10 @@
   std::vector<std::string> hsSuggestList = myHS -> suggest ([word UTF8String]); // returns a vector of suggestions, memory handled by the vector itself
 
   for (const std::string &suggestion : hsSuggestList) { // for all suggestions
-    [guessesForWord addObject:[NSString stringWithUTF8String:suggestion.c_str()]]; // add suggestion to suggestions array
+    NSString *suggestionString = [NSString stringWithUTF8String:suggestion.c_str()];
+    if (suggestionString != nil) {
+      [guessesForWord addObject:suggestionString]; // add suggestion to suggestions array
+    }
   }
 
   return guessesForWord; // return our array

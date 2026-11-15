@@ -43,6 +43,7 @@ int main(int argc, const char * argv[])
     else {
       NSLog(@"WARPDEBUG Pareizrakstiba - Spell server could not be registred\n");
     }
+    [pareizrakstibaSpellServer release];
     NSLog(@"WARPDEBUG Pareizrakstiba - Shutting down\n");
   }
   return 0;
