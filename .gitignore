@@ -1648,3 +1648,5 @@ Config/Local.xcconfig
 
 # generated compile_commands.json
 compile_commands.json
+
+.clang-format.*
