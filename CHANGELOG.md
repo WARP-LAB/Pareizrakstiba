@@ -8,6 +8,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Changed
+
+- License stated as GPL-2.0-or-later in the README, and all source file headers now carry the machine-readable `SPDX-License-Identifier: GPL-2.0-or-later` tag.
+
 ## [4.2.0] - 2026-11-15
 
 - Not code signed.

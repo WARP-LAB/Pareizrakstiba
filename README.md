@@ -141,4 +141,9 @@ Bugs reported to Apple (OpenRadar), never resolved:
 
 ## License
 
-[GNU GENERAL PUBLIC LICENSE, Version 2, June 1991](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
+This project is licensed under the **GNU General Public License v2.0 or later**
+([GPL-2.0-or-later](https://spdx.org/licenses/GPL-2.0-or-later.html)) —
+you may redistribute and/or modify it under the terms of the
+[GNU General Public License](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
+as published by the Free Software Foundation, either version 2 of the License,
+or (at your option) any later version.
