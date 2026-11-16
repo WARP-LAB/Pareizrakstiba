@@ -1650,3 +1650,5 @@ Config/Local.xcconfig
 compile_commands.json
 
 .clang-format.*
+
+engineering/
