@@ -102,6 +102,13 @@ if [ "${INSTALL}" = yes ]; then
 	SERVICES_DIR="${HOME}/Library/Services"
 	INSTALLED_ZIP="${SERVICES_DIR}/${ZIPFILE##*/}"
 
+	# flush the macOS services cache, if the pbs tool exists
+	pbs_flush() {
+		if [ -x "/System/Library/CoreServices/pbs" ]; then
+			/System/Library/CoreServices/pbs -flush >/dev/null 2>&1 || true
+		fi
+	}
+
 	# The spell server normally runs as the user, so no sudo is needed;
 	# escalate only if something survives (e.g. owned by another user)
 	stop_service_process() {
@@ -121,7 +128,7 @@ if [ "${INSTALL}" = yes ]; then
 	if [ -e "${SERVICES_DIR}/Pareizrakstiba.service" ]; then
 		sudo rm -rf "${SERVICES_DIR}/Pareizrakstiba.service"
 	fi
-	/System/Library/CoreServices/pbs -flush
+	pbs_flush
 
 	# install: copy the zip over and expand it into the plain .service bundle
 	cp "${ZIPFILE}" "${INSTALLED_ZIP}"
@@ -129,7 +136,7 @@ if [ "${INSTALL}" = yes ]; then
 
 	# postflight: no dangling zip, refresh the services cache
 	rm -f "${INSTALLED_ZIP}"
-	/System/Library/CoreServices/pbs -flush
+	pbs_flush
 
 	echo "Installed ${SERVICES_DIR}/Pareizrakstiba.service"
 fi
