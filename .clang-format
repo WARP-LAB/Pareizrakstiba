@@ -1,68 +1,48 @@
-# Documentation/process/clang-format.rst
+# This is kroko's clang format for ObjC project
+# keeping square-bracket notation for now
+# Based on LLVM
 # https://clang.llvm.org/docs/ClangFormat.html
 # https://clang.llvm.org/docs/ClangFormatStyleOptions.html
 
-# This config style does not use BasedOnStyle directive
-# but rather copies config used in Linux kernel
-# <https://github.com/torvalds/linux/blob/master/.clang-format>
-# <https://docs.kernel.org/dev-tools/clang-format.html>
-
 ---
 BasedOnStyle: LLVM
+
+# same as LLVM, kept explicit
 IndentWidth: 2
 TabWidth: 2
 UseTab: Never
-SortIncludes: false
+
+# LLVM default is 80
+ColumnLimit: 100
+
 ReflowComments: false
-# SpacesInBlockComments: Leave # v24
+# SpacesInBlockComments: Leave # available from v24
+SpacesBeforeTrailingComments: 1
+
+SortIncludes: false
+
+AllowShortIfStatementsOnASingleLine: WithoutElse
+AllowShortFunctionsOnASingleLine: Empty
+
+# Brace yourself
+# Break before function/method bodies (Allman) else and catch;
+# attach everything else
+BreakBeforeBraces: Stroustrup
 
 # ObjC directives
 ObjCBinPackProtocolList: Auto
 ObjCBlockIndentWidth: 2
 ObjCBreakBeforeNestedBlockParam: false
 # ObjCPropertyAttributeOrder # unsafe
-# ObjCSpaceAfterMethodDeclarationPrefix: true # v23
+# ObjCSpaceAfterMethodDeclarationPrefix: true # available from v23
 ObjCSpaceAfterProperty: true
 ObjCSpaceBeforeProtocolList: true
 
 ---
 Language: ObjC
 
-# General
-# SpacesBeforeTrailingComments: 1
-# AllowShortIfStatementsOnASingleLine: Never
-# AllowShortFunctionsOnASingleLine: Empty
-
-# Keep the long-winded comments?
-ReflowComments: true
-ColumnLimit: 80
-
-# For Obj-C++
+# For Obj-C++, align with std Hunspell is tested against and thus
+# we use for CLANG_CXX_LANGUAGE_STANDARD in this project
 Standard: c++14
-
-# Brace yourself
-# Allman for methods and Stroustrup for everything else
-BreakBeforeBraces: Custom
-BraceWrapping:
-  AfterCaseLabel: false
-  AfterClass: false
-  AfterControlStatement: false
-  AfterEnum: false
-  AfterFunction: true
-  AfterNamespace: true
-  AfterObjCDeclaration: false
-  # AfterRequiresExpression: true
-  AfterStruct: false
-  AfterUnion: false
-  # AfterExportBlock: true
-  AfterExternBlock: false
-  BeforeCatch: false
-  BeforeElse: false
-  BeforeLambdaBody: true
-  BeforeWhile: true
-  IndentBraces: false
-  SplitEmptyFunction: true
-  SplitEmptyRecord: true
-  SplitEmptyNamespace: true
 
 ...
