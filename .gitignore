@@ -1641,6 +1641,7 @@ FodyWeavers.xsd
 # End of https://www.toptal.com/developers/gitignore/api/osx,less,node,sass,bower,grunt,linux,pydev,swift,xcode,python,android,angular,eclipse,laravel,pycharm,vagrant,windows,composer,intellij,netbeans,phpstorm,textmate,webstorm,qtcreator,sublimetext,intellij+iml,visualstudio,androidstudio
 
 build/
+dmg/
 Installer/*/*.scpt
 
 # Machine-specific Xcode build overrides
