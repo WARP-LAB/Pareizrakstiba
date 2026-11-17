@@ -13,6 +13,7 @@
 
 @interface PareizrakstibaSpellChecker ()
 - (BOOL)isWordSpelledCorrectly:(NSString *)word;
+- (NSString *)wordByTrimmingTrailingDots:(NSString *)word;
 @end
 
 @implementation PareizrakstibaSpellChecker
@@ -80,6 +81,17 @@
   return spelledCorrectly;
 }
 
+// Copy of the token without its trailing dots
+// Mirroring what hunspell cleanword2() does, i.e., it strips before looking in dic
+- (NSString *)wordByTrimmingTrailingDots:(NSString *)word
+{
+  NSUInteger length = [word length];
+  while (length > 0 && [word characterAtIndex:length - 1] == '.') {
+    --length;
+  }
+  return length == [word length] ? word : [word substringToIndex:length];
+}
+
 // Suggest guesses for the correct spelling of the given misspelled word
 - (NSArray<NSString *> *)spellServer:(NSSpellServer *)sender
                suggestGuessesForWord:(NSString *)word
@@ -145,7 +157,11 @@
         // and accumulate characters into wordToCheck
         [stringToCheckScanner scanCharactersFromSet:wordCharSet intoString:&wordToCheck];
 
-        if (([sender isWordInUserDictionaries:wordToCheck caseSensitive:YES]) ||
+        // A learned word is stored without the trailing dot
+        // Hunspell keeps the original token, its single-dot retry is
+        // what makes abbreviations such as "u.c.", "u.tml." pass
+        NSString *userWord = [self wordByTrimmingTrailingDots:wordToCheck];
+        if (([sender isWordInUserDictionaries:userWord caseSensitive:YES]) ||
             [self isWordSpelledCorrectly:wordToCheck]) {
           ++wordCountUntill;
           continue;
