@@ -18,6 +18,11 @@
   self = [super init];
   if (self) {
     mySC = [[PareizrakstibaSpellChecker alloc] init];
+    if (mySC == nil) {
+      NSLog(@"Pareizrakstiba - spell checker could not be created\n");
+      [self release];
+      return nil;
+    }
   }
   return self;
 }

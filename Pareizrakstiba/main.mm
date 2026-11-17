@@ -23,11 +23,18 @@ int main(int argc, const char *argv[])
     if ([pareizrakstibaSpellServer registerLanguage:@"lv" byVendor:@"Pareizrakstiba"]) {
 
       NSLog(@"WARPDEBUG Pareizrakstiba - Spell server registred\n");
-      [pareizrakstibaSpellServer setDelegate:[[[PareizrakstibaDelegate alloc] init] autorelease]];
+      PareizrakstibaDelegate *delegate = [[PareizrakstibaDelegate alloc] init];
+      if (delegate != nil) {
+        [pareizrakstibaSpellServer setDelegate:delegate];
 
-      NSLog(@"WARPDEBUG Pareizrakstiba - Spell checker delegated\n");
+        NSLog(@"WARPDEBUG Pareizrakstiba - Spell checker delegated\n");
 
-      [pareizrakstibaSpellServer run];
+        [pareizrakstibaSpellServer run];
+        [delegate release];
+      }
+      else {
+        NSLog(@"WARPDEBUG Pareizrakstiba - Spell checker delegate could not be created\n");
+      }
     }
     else {
       NSLog(@"WARPDEBUG Pareizrakstiba - Spell server could not be registred\n");

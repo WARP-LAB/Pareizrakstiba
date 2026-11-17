@@ -21,22 +21,30 @@
 {
   self = [super init];
   if (self != nil) {
-    myHS = new Hunspell(
-        [[[NSBundle bundleForClass:[self class]] pathForResource:@"lv_LV" ofType:@"aff"
-                                                     inDirectory:@"lv_LV"] UTF8String],
-        [[[NSBundle bundleForClass:[self class]] pathForResource:@"lv_LV" ofType:@"dic"
-                                                     inDirectory:@"lv_LV"] UTF8String]);
+    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+    NSString *affPath = [bundle pathForResource:@"lv_LV" ofType:@"aff" inDirectory:@"lv_LV"];
+    NSString *dicPath = [bundle pathForResource:@"lv_LV" ofType:@"dic" inDirectory:@"lv_LV"];
 
-    // Word charset: alphanumerics and '.'.
-    // See engineering/spelling/decisions/0001-word-charset.md
+    if (affPath == nil || dicPath == nil) {
+      NSLog(@"Pareizrakstiba - missing dictionary resource in bundle:%@%@\n",
+            (affPath == nil) ? @" lv_LV.aff" : @"", (dicPath == nil) ? @" lv_LV.dic" : @"");
+      [self release];
+      self = nil;
+    }
+    else {
+      myHS = new Hunspell([affPath UTF8String], [dicPath UTF8String]);
 
-    wordCharSet = [[NSMutableCharacterSet alphanumericCharacterSet] retain];
-    [wordCharSet addCharactersInString:@"."];
+      // Word charset: alphanumerics and '.'.
+      // See engineering/spelling/decisions/0001-word-charset.md
 
-    // Memoization of hunspell spell() verdicts
-    spellCache = [[NSCache alloc] init];
-    // soft bound
-    [spellCache setCountLimit:4096];
+      wordCharSet = [[NSMutableCharacterSet alphanumericCharacterSet] retain];
+      [wordCharSet addCharactersInString:@"."];
+
+      // Memoization of hunspell spell() verdicts
+      spellCache = [[NSCache alloc] init];
+      // soft bound
+      [spellCache setCountLimit:4096];
+    }
   }
   return self;
 }
