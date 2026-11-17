@@ -66,18 +66,23 @@
 // hunspell has no result cache, thus repeated verdicts are served from here
 - (BOOL)isWordSpelledCorrectly:(NSString *)word
 {
-  NSNumber *cachedVerdict = [spellCache objectForKey:word];
+  // The dictionary stores precomposed (NFC) characters only, so a
+  // decomposed (NFD) form of the same word would fail
+  // Normalise first so both forms share the verdict
+  NSString *normalizedWord = [word precomposedStringWithCanonicalMapping];
+
+  NSNumber *cachedVerdict = [spellCache objectForKey:normalizedWord];
   if (cachedVerdict != nil) {
     return [cachedVerdict boolValue];
   }
 
-  const char *utf8Word = [word UTF8String];
+  const char *utf8Word = [normalizedWord UTF8String];
   if (utf8Word == NULL) {
     return NO;
   }
 
   BOOL spelledCorrectly = myHS->spell(std::string(utf8Word));
-  [spellCache setObject:[NSNumber numberWithBool:spelledCorrectly] forKey:word];
+  [spellCache setObject:[NSNumber numberWithBool:spelledCorrectly] forKey:normalizedWord];
   return spelledCorrectly;
 }
 
@@ -99,11 +104,14 @@
 {
   NSMutableArray *guessesForWord = [NSMutableArray array];
 
+  // Dictionary stores precomposed (NFC), normalise first
+  NSString *normalizedWord = [word precomposedStringWithCanonicalMapping];
+
 #if DEBUG
-  NSLog(@"Trying to get suggestions for string: %s", [word UTF8String]);
+  NSLog(@"Trying to get suggestions for string: %s", [normalizedWord UTF8String]);
 #endif
 
-  const char *utf8Word = [word UTF8String];
+  const char *utf8Word = [normalizedWord UTF8String];
   if (utf8Word == NULL) {
     return guessesForWord;
   }
@@ -232,7 +240,8 @@
   // I will use array that's returned by suggestGuessesForWord
   // See engineering/spelling/decisions/0004-suggest-completions.md
 
-  NSString *rangeString = [NSString stringWithString:[string substringWithRange:range]];
+  // Suggestions come back in NFC
+  NSString *rangeString = [[string substringWithRange:range] precomposedStringWithCanonicalMapping];
 
   NSMutableArray *completionsList =
       [NSMutableArray arrayWithArray:[self spellServer:sender suggestGuessesForWord:rangeString
