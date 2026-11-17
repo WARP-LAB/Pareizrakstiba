@@ -23,7 +23,8 @@ Service that adds support for system-wide spell checking in the Latvian language
 
 - Check out official Apple macOS User Guide for [Check spelling and grammar on Mac](https://support.apple.com/en-gb/guide/mac-help/mchlp2299/mac)
 - Covers all apps that use the macOS spelling engine. A quick way to detect support is if the app has _Edit : Spelling and Grammar_ menu entry. Only some don't.
-- In applications, make sure that Latvian spellcheck is selected: _Edit : Spelling and Grammar : Show Spelling and Grammar : Latviešu (Pareizrakstiba)_
+- In applications, make sure that Latvian spellcheck is selected in _Edit : Spelling and Grammar : Show Spelling and Grammar → Latviešu (Pareizrakstiba)_
+- Play around with settings under _System Settings : Keyboard : Input Sources → Edit…_ Here is also _Spelling_ dopdown where you can set preferred default spelling language. For older macOS versions settings can be found in _System Preferences : Keyboard : Text_.
 - _LibreOffice_ et al. users have no need to download and install dictionaries from within these apps, as the mentioned applications use the macOS system-wide spell checking. Besides, when using Pareizrakstība in the applications and adding new words, they will apply to the whole OS.
 - Rich text content in _Google Docs, Sheets & Slides_ on _Safari_, _Chrome_ and others cannot be _reached_ by the macOS system-wide spell checking because of how Google has coded its web applications.
 - Spelling learned by the user is kept in `~/Library/Spelling/` for the user.
