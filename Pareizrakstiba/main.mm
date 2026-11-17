@@ -19,7 +19,7 @@ int main(int argc, const char * argv[])
   @autoreleasepool {
     PareizrakstibaSpellServer *pareizrakstibaSpellServer = [[PareizrakstibaSpellServer alloc] init];
     // vendor @"Apple" or @"Pareizrakstiba"
-    // ckeck NSSpellChecker key in NSServices
+    // check NSSpellChecker key in NSServices
     if ([pareizrakstibaSpellServer registerLanguage:@"lv" byVendor:@"Pareizrakstiba"]) {
 
       NSLog(@"WARPDEBUG Pareizrakstiba - Spell server registred\n");

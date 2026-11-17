@@ -13,16 +13,16 @@
 #import <Foundation/NSSpellServer.h>
 #import "PareizrakstibaSpellChecker.h"
 
-// As I had the idea of introducing some basic grammar checking, made this a forwarding class.
-// Separate class for spelling, rather than putting code right here into instance methods.
-// So grammar could be easily "modally" added later.
+// As I had the idea of introducing some basic grammar checking,
+// made this a forwarding class.
+// Separate class for spelling, rather than putting code right here
+// into instance methods.
 
-@class	PareizrakstibaSpellChecker; // Spelling checker class
-
-// Since 10.6 this is informal protocol
+@class	PareizrakstibaSpellChecker;
 @interface PareizrakstibaDelegate : NSObject <NSSpellServerDelegate> {
   PareizrakstibaSpellChecker*		mySC;
 }
+
 // construct/deconstruct
 - (id) init;
 - (void) dealloc;

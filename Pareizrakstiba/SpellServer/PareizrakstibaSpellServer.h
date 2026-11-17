@@ -14,7 +14,8 @@
 
 // Subclass of NSSpellServer
 // Currently an empty class
-// It was not so empty as I used to play around w/ a companion preference pane to change spell server opts on fly
+// It was not so empty as I used to play around w/
+// a companion preference pane to change spell server opts on fly
 
 @interface PareizrakstibaSpellServer : NSSpellServer
 

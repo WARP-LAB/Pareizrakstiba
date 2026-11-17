@@ -55,7 +55,8 @@ suggestCompletionsForPartialWordRange:(NSRange)range
   return [mySC spellServer:sender suggestCompletionsForPartialWordRange:range inString:string language:language];
 }
 
-// User has removed the specified word from the user’s list of acceptable words in the specified language
+// User has removed the specified word from the user’s list of acceptable words
+// in the specified language
 - (void)                  spellServer:(NSSpellServer *)sender
                         didForgetWord:(NSString *)word
                            inLanguage:(NSString *)language
@@ -63,7 +64,8 @@ suggestCompletionsForPartialWordRange:(NSRange)range
   return [mySC spellServer:sender didForgetWord:word inLanguage:language];
 }
 
-// User has added the specified word to the user’s list of acceptable words in the specified language.
+// User has added the specified word to the user’s list of acceptable words
+// in the specified language
 - (void)                  spellServer:(NSSpellServer *)sender
                          didLearnWord:(NSString *)word
                            inLanguage:(NSString *)language
@@ -71,7 +73,8 @@ suggestCompletionsForPartialWordRange:(NSRange)range
   return [mySC spellServer:sender didLearnWord:word inLanguage:language];
 }
 
-// Notifies the spell checker of the users’s response to a correction. (required)
+// Notifies the spell checker of the users’s response to a correction
+// Required
 - (void)                  spellServer:(NSSpellServer *)sender
                        recordResponse:(NSUInteger)response
                          toCorrection:(NSString *)correction
