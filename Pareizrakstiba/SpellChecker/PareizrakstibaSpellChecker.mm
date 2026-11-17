@@ -240,6 +240,11 @@
   // I will use array that's returned by suggestGuessesForWord
   // See engineering/spelling/decisions/0004-suggest-completions.md
 
+  // add guard if malicious client passes a range outside the string
+  if (NSMaxRange(range) > [string length]) {
+    return [NSMutableArray array];
+  }
+
   // Suggestions come back in NFC
   NSString *rangeString = [[string substringWithRange:range] precomposedStringWithCanonicalMapping];
 
