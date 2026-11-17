@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<!-- Path of the bundle relative to the payload root; the full
+		     destination path is install-location + this, so the bundle
+		     sits at the root of the payload and /Library/Services (or
+		     ~/Library/Services for a home destination) comes from
+		     --install-location alone -->
+		<key>RootRelativeBundlePath</key>
+		<string>Pareizrakstiba.service</string>
+		<!-- Lets Installer.app search for an existing install in either
+		     domain (/Library/Services or ~/Library/Services), which is
+		     what makes the "Install for all users / only for this user"
+		     destination choice available. Not the default on macOS 27+. -->
+		<key>BundleIsRelocatable</key>
+		<true/>
+		<!-- Always replace what is on disk; preinstall removes it anyway -->
+		<key>BundleIsVersionChecked</key>
+		<false/>
+		<key>BundleOverwriteAction</key>
+		<string>upgrade</string>
+	</dict>
+</array>
+</plist>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<installer-gui-script minSpecVersion="2">
+	<title>Pareizrakstība</title>
+	<organization>lv.warp</organization>
+	<!-- Single choice; the user/all-users destination choice is provided
+	     by the relocatable component bundle (see component.plist) -->
+	<options customize="never" require-scripts="true"/>
+	<!-- Destination Select offers both the boot volume (all users,
+	     payload lands in /Library/Services) and the user's home
+	     (this user only, payload lands in ~/Library/Services) -->
+	<domains enable_anywhere="false" enable_currentUserHome="true" enable_localSystem="true"/>
+	<welcome file="Welcome.rtf"/>
+	<choices-outline>
+		<line choice="service"/>
+	</choices-outline>
+	<choice id="service" title="Pareizrakstība spell checker">
+		<pkg-ref id="lv.warp.Pareizrakstiba.service"/>
+	</choice>
+	<pkg-ref id="lv.warp.Pareizrakstiba.service"
+		version="@VERSION@">Pareizrakstiba.component.pkg</pkg-ref>
+</installer-gui-script>

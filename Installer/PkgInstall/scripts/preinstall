@@ -1,0 +1,25 @@
+#!/bin/bash
+# preinstall — preflight for the Pareizrakstiba spell server
+#
+# Runs as root for a system install and as the installing user for a
+# per-user install. Clean up a previous install no matter which domain
+# it lives in, so switching between "all users" and "only me" works.
+
+set -u
+
+killall Pareizrakstiba 2>/dev/null || true
+killall Pareizrakstiba.service 2>/dev/null || true
+
+# The system domain is only reachable as root; a per-user install runs
+# these scripts as the user, without an administrator password
+if [ "$(id -u)" -eq 0 ]; then
+	rm -rf "/Library/Services/Pareizrakstiba.service"
+fi
+rm -rf "$HOME/Library/Services/Pareizrakstiba.service"
+
+# flush the services cache, if the tool exists
+if [ -x "/System/Library/CoreServices/pbs" ]; then
+	/System/Library/CoreServices/pbs -flush >/dev/null 2>&1 || true
+fi
+
+exit 0

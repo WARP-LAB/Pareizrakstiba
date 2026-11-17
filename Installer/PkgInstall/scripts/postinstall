@@ -1,0 +1,21 @@
+#!/bin/bash
+# postinstall — postflight for the Pareizrakstiba spell server
+#
+# Remove any stray zips left by build.sh --install, and refresh the
+# services cache so clients see the (new) spell server without a logout.
+
+set -u
+
+# The system domain is only reachable as root; a per-user install runs
+# these scripts as the user, without an administrator password
+if [ "$(id -u)" -eq 0 ]; then
+	rm -f "/Library/Services/Pareizrakstiba_"*.zip
+fi
+rm -f "$HOME/Library/Services/Pareizrakstiba_"*.zip
+
+# flush the services cache, if the tool exists
+if [ -x "/System/Library/CoreServices/pbs" ]; then
+	/System/Library/CoreServices/pbs -flush >/dev/null 2>&1 || true
+fi
+
+exit 0
