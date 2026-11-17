@@ -62,7 +62,12 @@
     return [cachedVerdict boolValue];
   }
 
-  BOOL spelledCorrectly = myHS->spell(std::string([word UTF8String]));
+  const char *utf8Word = [word UTF8String];
+  if (utf8Word == NULL) {
+    return NO;
+  }
+
+  BOOL spelledCorrectly = myHS->spell(std::string(utf8Word));
   [spellCache setObject:[NSNumber numberWithBool:spelledCorrectly] forKey:word];
   return spelledCorrectly;
 }
@@ -78,7 +83,12 @@
   NSLog(@"Trying to get suggestions for string: %s", [word UTF8String]);
 #endif
 
-  std::vector<std::string> hsSuggestList = myHS->suggest([word UTF8String]);
+  const char *utf8Word = [word UTF8String];
+  if (utf8Word == NULL) {
+    return guessesForWord;
+  }
+
+  std::vector<std::string> hsSuggestList = myHS->suggest(utf8Word);
 
   for (const std::string &suggestion : hsSuggestList) {
     NSString *suggestionString = [NSString stringWithUTF8String:suggestion.c_str()];
