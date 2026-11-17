@@ -13,7 +13,7 @@
 #import "PareizrakstibaSpellServer.h"
 #import "PareizrakstibaDelegate.h"
 
-int main(int argc, const char * argv[])
+int main(int argc, const char *argv[])
 {
   NSLog(@"WARPDEBUG Pareizrakstiba - 4.2.0 (c) 2008-2026 kroko\n");
   @autoreleasepool {

@@ -22,66 +22,70 @@
   return self;
 }
 
-- (void) dealloc
+- (void)dealloc
 {
   [mySC release];
   [super dealloc];
 }
 
 // Search for a misspelled word in a given string
-- (NSRange)               spellServer:(NSSpellServer *)sender
-           findMisspelledWordInString:(NSString *)stringToCheck
-                             language:(NSString *)language
-                            wordCount:(NSInteger *)wordCount
-                            countOnly:(BOOL)countOnly
+- (NSRange)spellServer:(NSSpellServer *)sender
+    findMisspelledWordInString:(NSString *)stringToCheck
+                      language:(NSString *)language
+                     wordCount:(NSInteger *)wordCount
+                     countOnly:(BOOL)countOnly
 {
-  return [mySC spellServer:sender findMisspelledWordInString:stringToCheck language:language wordCount:wordCount countOnly:countOnly];
+  return [mySC spellServer:sender findMisspelledWordInString:stringToCheck language:language
+                       wordCount:wordCount
+                       countOnly:countOnly];
 }
 
 // Suggest guesses for the correct spelling of the given misspelled word
-- (NSArray<NSString *> *) spellServer:(NSSpellServer *)sender
-                suggestGuessesForWord:(NSString *)word
-                           inLanguage:(NSString *)language
+- (NSArray<NSString *> *)spellServer:(NSSpellServer *)sender
+               suggestGuessesForWord:(NSString *)word
+                          inLanguage:(NSString *)language
 {
   return [mySC spellServer:sender suggestGuessesForWord:word inLanguage:language];
 }
 
 // Possible word completions, based on a partially completed string
-- (NSArray<NSString *> *) spellServer:(NSSpellServer *)sender
-suggestCompletionsForPartialWordRange:(NSRange)range
-                             inString:(NSString *)string
-                             language:(NSString *)language
+- (NSArray<NSString *> *)spellServer:(NSSpellServer *)sender
+    suggestCompletionsForPartialWordRange:(NSRange)range
+                                 inString:(NSString *)string
+                                 language:(NSString *)language
 {
-  return [mySC spellServer:sender suggestCompletionsForPartialWordRange:range inString:string language:language];
+  return [mySC spellServer:sender suggestCompletionsForPartialWordRange:range inString:string
+                                   language:language];
 }
 
 // User has removed the specified word from the user’s list of acceptable words
 // in the specified language
-- (void)                  spellServer:(NSSpellServer *)sender
-                        didForgetWord:(NSString *)word
-                           inLanguage:(NSString *)language
+- (void)spellServer:(NSSpellServer *)sender
+      didForgetWord:(NSString *)word
+         inLanguage:(NSString *)language
 {
   return [mySC spellServer:sender didForgetWord:word inLanguage:language];
 }
 
 // User has added the specified word to the user’s list of acceptable words
 // in the specified language
-- (void)                  spellServer:(NSSpellServer *)sender
-                         didLearnWord:(NSString *)word
-                           inLanguage:(NSString *)language
+- (void)spellServer:(NSSpellServer *)sender
+       didLearnWord:(NSString *)word
+         inLanguage:(NSString *)language
 {
   return [mySC spellServer:sender didLearnWord:word inLanguage:language];
 }
 
 // Notifies the spell checker of the users’s response to a correction
 // Required
-- (void)                  spellServer:(NSSpellServer *)sender
-                       recordResponse:(NSUInteger)response
-                         toCorrection:(NSString *)correction
-                              forWord:(NSString *)word
-                             language:(NSString *)language;
+- (void)spellServer:(NSSpellServer *)sender
+     recordResponse:(NSUInteger)response
+       toCorrection:(NSString *)correction
+            forWord:(NSString *)word
+           language:(NSString *)language;
 {
-  return [mySC spellServer:sender recordResponse:response toCorrection:correction forWord:word language:language];
+  return [mySC spellServer:sender recordResponse:response toCorrection:correction forWord:word
+                  language:language];
 }
 
 @end
