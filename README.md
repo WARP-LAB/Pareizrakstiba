@@ -46,7 +46,7 @@ git clone --recurse-submodules git@github.com:WARP-LAB/Pareizrakstiba.git
 # read Hunspell submodule management
 
 # build
-./build.sh --help # specify config release|debug, zip yes|no
+./build.sh --help # specify config release|debug, zip yes|no, install yes|no
 ./build.sh
 
 # profit
