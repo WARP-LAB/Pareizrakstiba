@@ -110,7 +110,7 @@
         [stringToCheckScanner scanCharactersFromSet:wordCharSet intoString:nil];
       }
     }
-    if (*wordCount) *wordCount = wordCountTotal;
+    if (wordCount) *wordCount = wordCountTotal;
   }
   else {
     NSInteger wordCountUntill = 0;
@@ -133,7 +133,7 @@
           continue;
         }
         else {
-          if (*wordCount) *wordCount = wordCountUntill;
+          if (wordCount) *wordCount = wordCountUntill;
 
           // Check for .
           // See engineering/spelling/decisions/0001-word-charset.md
@@ -150,7 +150,7 @@
       }
     }
     // pass number of words till misspelled word
-    if (*wordCount) *wordCount = wordCountUntill;
+    if (wordCount) *wordCount = wordCountUntill;
   }
   // No misspelling found: INT_MAX, not NSNotFound
   // See engineering/spelling/decisions/0006-no-misspelling-found.md
