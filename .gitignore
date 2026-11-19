@@ -825,8 +825,10 @@ venv.bak/
 # Rope project settings
 .ropeproject
 
-# mkdocs documentation
-/site
+# Site (Jekyll) build output and caches - site/ itself is tracked
+_site/
+.jekyll-cache/
+site/vendor/
 
 # mypy
 .mypy_cache/
