@@ -1,25 +1,21 @@
 # Pareizrakstība
 
-Pareizrakstība - Latvian spellcheck for the macOS operating system.
-Service that adds support for system-wide spell checking in the Latvian language.
+Service that adds support for system-wide spell checking in the Latvian language for the macOS operating system.
 
-## Requirements
+## Users
+
+### Requirements
 
 - macOS 12+
-- Tested on macOS 27 and macOS 12
 - Universal (Intel & Apple Silicon)
+- Tested on macOS 27 and macOS 12
 
-## Older OS support
-
-- macOS 10.13+ Universal [v4.1.0](https://github.com/WARP-LAB/Pareizrakstiba/releases/tag/v4.1.0)
-- Mac OS X 10.4 to Mac OS X 10.9 Intel 32 & 64-bit [Pareizrakstiba-Archive](https://github.com/WARP-LAB/Pareizrakstiba-Archive)
-
-## Installation
+### Installation
 
 - See [latest release](https://github.com/WARP-LAB/Pareizrakstiba/releases).
   - For 4.2.0 no installer, just a zipped, unsigned build
 
-## Usage
+### Usage
 
 - Check out official Apple macOS User Guide for [Check spelling and grammar on Mac](https://support.apple.com/en-gb/guide/mac-help/mchlp2299/mac)
 - Covers all apps that use the macOS spelling engine. A quick way to detect support is if the app has _Edit : Spelling and Grammar_ menu entry. Only some don't.
@@ -30,14 +26,36 @@ Service that adds support for system-wide spell checking in the Latvian language
 - Spelling learned by the user is kept in `~/Library/Spelling/` for the user.
 - The shortcut for the rarely used autocompletion list is either `Option+Esc` or `F5` (before Mac OS X 10.6 it was `Esc`).
 
-## Installation side effects
+### Installation side effects
 
 Upon installation, Pareizrakstība checks for and removes all previous versions.
 Pareizrakstība does not check for CheckSpell and cocoAspell (or pspell). Historically it did, as first versions were playing with that.
 
-## Building from source
+### Older OS support
 
-### Build
+- macOS 10.13+ Universal [v4.1.0](https://github.com/WARP-LAB/Pareizrakstiba/releases/tag/v4.1.0)
+- Mac OS X 10.4 to Mac OS X 10.9 Intel 32 & 64-bit [Pareizrakstiba-Archive](https://github.com/WARP-LAB/Pareizrakstiba-Archive)
+
+### Spelling configuration via CLI
+
+A few one-liners to avoid digging through deeply buried checkboxes in macOS Settings.
+
+```zsh
+# Disable automatic language detection
+defaults write NSGlobalDomain NSSpellCheckerAutomaticallyIdentifiesLanguages -bool FALSE
+
+# Try to force Latvian as the default language when launching applications
+defaults write NSGlobalDomain NSPreferredSpellServerLanguage 'lv'
+
+# Disable system-wide autocorrect
+defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool FALSE
+```
+
+## Devs
+
+### Building from source
+
+#### Build
 
 ```zsh
 # clone
@@ -56,7 +74,7 @@ open build/Release # or build/Debug
 
 The resulting product is the `Pareizrakstiba.service` bundle (zipped by default).
 
-### Hunspell submodule management
+#### Hunspell submodule management
 
 This is an optional step.
 
@@ -79,55 +97,50 @@ HUNSPELL_CONFIGURE_PATH="/opt/homebrew/bin:/usr/bin:/bin" \
 vendors/hunspell/generate-config.sh
 ```
 
-## Manual putting in place
+### Manual install
 
-### Stop and remove older version
+#### Stop and remove older version
 
 If it already exists on the system, kill the Pareizrakstiba service and remove it.
-You might not need sudo if it was running as the user
 
 ```zsh
-sudo killall Pareizrakstiba > /dev/null 2>&1
-sudo rm -rf /Library/Services/Pareizrakstiba.service
-sudo rm -rf ~/Library/Services/Pareizrakstiba.service
-sudo -k
+killall Pareizrakstiba 2>/dev/null || true
+rm -rf ~/Library/Services/Pareizrakstiba.service
 ```
 
-### Move the product to the correct install path
+You might not need sudo if it was running at system-level
+
+```zsh
+sudo killall Pareizrakstiba 2>/dev/null || true
+sudo rm -rf /Library/Services/Pareizrakstiba.service
+```
+
+#### Move the product to the correct install path
 
 Move the built `Pareizrakstiba.service` bundle to one of the following locations
 - `~/Library/Services` for the current user (create directory, if needed)
 - `/Library/Services` for all users (check permissions)
 
-### Flush services
+#### Flush services
 
 ```zsh
-/System/Library/CoreServices/pbs -flush
+/System/Library/CoreServices/pbs -flush >/dev/null 2>&1 || true
 ```
 
-## Spelling configuration via CLI
+### clangd
 
-A few one-liners to avoid digging through deeply buried checkboxes in macOS Settings.
-
-```zsh
-# Disable automatic language detection
-defaults write NSGlobalDomain NSSpellCheckerAutomaticallyIdentifiesLanguages -bool FALSE
-
-# Try to force Latvian as the default language when launching applications
-defaults write NSGlobalDomain NSPreferredSpellServerLanguage 'lv'
-
-# Disable system-wide autocorrect
-defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool FALSE
-```
-
-## Clangd
-
-Been using [clangd](https://clangd.llvm.org) for a long time. And on VS Code, which I use for this project, that now means using [vscode-clangd](https://github.com/clangd/vscode-clangd?tab=readme-ov-file) instead of MS IntelliSense.
+Been using [clangd](https://clangd.llvm.org) for a long time. Switched this project to VS Code, which means using [vscode-clangd](https://github.com/clangd/vscode-clangd?tab=readme-ov-file) extension instead of MS IntelliSense.
 
 This will generate `compile_commands.json` to make the clangd language server happy
 
 ```zsh
 ./clangd_generate.sh
+```
+
+### clang-format
+
+```zsh
+./clang-format.sh --help
 ```
 
 ## Version history
@@ -140,6 +153,11 @@ Bugs reported to Apple (OpenRadar), never resolved:
 - [https://lists.apple.com/archives/cocoa-dev/2009/oct/msg00637.html](https://web.archive.org/web/20240812193115/https://lists.apple.com/archives/cocoa-dev/2009/oct/msg00637.html)
 - [https://lists.apple.com/archives/cocoa-dev/2009/Oct/msg01212.html](https://web.archive.org/web/20240724003520/https://lists.apple.com/archives/cocoa-dev/2009/Oct/msg01212.html)
 
+## Uses
+
+- [Hunspell](https://hunspell.github.io)
+- [Latvian language Hunspell dictionaries](https://dict.dv.lv/home.php?prj=lv)
+
 ## License
 
 This project is licensed under the **GNU General Public License v2.0 or later**
@@ -148,3 +166,10 @@ you may redistribute and/or modify it under the terms of the
 [GNU General Public License](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
 as published by the Free Software Foundation, either version 2 of the License,
 or (at your option) any later version.
+
+```txt
+ Pareizrakstība
+ Latvian spellcheck for macOS
+ Copyright (C) 2008-2026 kroko (Reinis Adovičs)
+ SPDX-License-Identifier: GPL-2.0-or-later
+```
