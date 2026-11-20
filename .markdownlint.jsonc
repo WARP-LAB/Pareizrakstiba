@@ -17,6 +17,10 @@
   "MD013": false,
   // https://github.com/DavidAnson/markdownlint/blob/main/doc/md032.md
   "MD032": false,
+  // https://github.com/DavidAnson/markdownlint/blob/main/doc/md033.md
+  "MD033": {
+    "allowed_elements": ["details", "summary"]
+  },
   // site/ pages use front matter `title` for <title> and keep their own H1
   // https://github.com/DavidAnson/markdownlint/blob/main/doc/md025.md
   "MD025": {
