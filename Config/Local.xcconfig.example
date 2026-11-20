@@ -5,8 +5,32 @@
 // Signing.xcconfig, so values here override everything in Common,
 // Debug, Release and Signing.
 
-// Example - sign with a Developer ID certificate instead of ad-hoc:
-//
-//   CODE_SIGN_IDENTITY = Developer ID Application
+// Without this file every build is ad-hoc signed (CODE_SIGN_IDENTITY = -
+// and CODE_SIGN_STYLE = Manual from Signing.xcconfig).
+// List your identities with: security find-identity -v
+
+// ----------------
+// ALWAYS
+// The team ID of the certificate you sign with: the OU of an Apple
+// Development certificate, or the ID in a Developer ID identity's
+// parentheses. These can differ, e.g. a personal development team vs.
+// an organisation's Developer ID team.
 //   DEVELOPMENT_TEAM = ABCDE12345
+
+// ----------------
+// OPTION A
+// Sign Debug and Release with your development certificate. Enough when
+// shipping through Installer/PkgInstall/make-installer.sh, which re-signs
+// the bundle with Developer ID + hardened runtime anyway.
 //   CODE_SIGN_STYLE = Automatic
+//   CODE_SIGN_IDENTITY = Apple Development
+
+// ----------------
+// OPTION B
+// Release signed with Developer ID + hardened runtime + secure timestamp,
+// so the bare .service bundle (build.sh zip) can be notarized and
+// distributed directly. Debug stays ad-hoc. Keeps CODE_SIGN_STYLE = Manual
+// from Signing.xcconfig: automatic signing refuses a Developer ID identity.
+//   CODE_SIGN_IDENTITY[config=Release] = Developer ID Application: Name or Company (ABCDE12345)
+//   ENABLE_HARDENED_RUNTIME[config=Release] = YES
+//   OTHER_CODE_SIGN_FLAGS[config=Release] = --timestamp
