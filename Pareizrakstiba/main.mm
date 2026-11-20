@@ -15,32 +15,32 @@
 
 int main(int argc, const char *argv[])
 {
-  NSLog(@"WARPDEBUG Pareizrakstiba - 4.2.0 (c) 2008-2026 kroko\n");
+  NSLog(@"Pareizrakstiba - 4.2.1 (c) 2008-2026 kroko\n");
   @autoreleasepool {
     PareizrakstibaSpellServer *pareizrakstibaSpellServer = [[PareizrakstibaSpellServer alloc] init];
     // vendor @"Apple" or @"Pareizrakstiba"
     // check NSSpellChecker key in NSServices
     if ([pareizrakstibaSpellServer registerLanguage:@"lv" byVendor:@"Pareizrakstiba"]) {
 
-      NSLog(@"WARPDEBUG Pareizrakstiba - Spell server registred\n");
+      NSLog(@"Pareizrakstiba - Spell server registred\n");
       PareizrakstibaDelegate *delegate = [[PareizrakstibaDelegate alloc] init];
       if (delegate != nil) {
         [pareizrakstibaSpellServer setDelegate:delegate];
 
-        NSLog(@"WARPDEBUG Pareizrakstiba - Spell checker delegated\n");
+        NSLog(@"Pareizrakstiba - Spell checker delegated\n");
 
         [pareizrakstibaSpellServer run];
         [delegate release];
       }
       else {
-        NSLog(@"WARPDEBUG Pareizrakstiba - Spell checker delegate could not be created\n");
+        NSLog(@"Pareizrakstiba - Spell checker delegate could not be created\n");
       }
     }
     else {
-      NSLog(@"WARPDEBUG Pareizrakstiba - Spell server could not be registred\n");
+      NSLog(@"Pareizrakstiba - Spell server could not be registred\n");
     }
     [pareizrakstibaSpellServer release];
-    NSLog(@"WARPDEBUG Pareizrakstiba - Shutting down\n");
+    NSLog(@"Pareizrakstiba - Shutting down\n");
   }
   return 0;
 }

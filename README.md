@@ -12,8 +12,13 @@ Service that adds support for system-wide spell checking in the Latvian language
 
 ### Installation
 
-- See [latest release](https://github.com/WARP-LAB/Pareizrakstiba/releases).
-  - For 4.2.0 no installer, just a zipped, unsigned build
+- [Download latest release](https://github.com/WARP-LAB/Pareizrakstiba/releases/latest/download/Pareizrakstiba.dmg), here are [latest release notes](https://github.com/WARP-LAB/Pareizrakstiba/releases/latest/)
+- Mount DMG and run `Pareizrakstiba.pkg` installer, it will guide you through the process.
+
+### Uninstallation
+
+- [Download latest release](https://github.com/WARP-LAB/Pareizrakstiba/releases/latest/download/Pareizrakstiba.dmg), can check [release notes](https://github.com/WARP-LAB/Pareizrakstiba/releases/latest/)
+- Mount DMG and run `Uninstall Pareizrakstiba`, it will guide you through the process.
 
 ### Usage
 

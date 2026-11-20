@@ -8,9 +8,24 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+## [4.2.1] - 2026-11-21
+
+- Code signed with Developer ID and notarized.
+
+### Added
+
+- Installer: a DMG with a double-clickable `Pareizrakstiba.pkg` (install for all users or only the current user) and an `Uninstall Pareizrakstiba` app.
+
 ### Changed
 
 - License stated as GPL-2.0-or-later in the README, and all source file headers now carry the machine-readable `SPDX-License-Identifier: GPL-2.0-or-later` tag.
+
+### Fixed
+
+- Learned words are now recognised at the end of a sentence too (followed by a dot).
+- Words in decomposed Unicode form (NFD, e.g. pasted from some sources) are now checked and suggested the same as their precomposed (NFC) form.
+- No crash on words that cannot be converted to UTF-8, on a text range outside the string sent by a client, or when a client does not ask for a word count.
+- The spell server logs an error and stops cleanly if the dictionary files are missing from the bundle, instead of crashing.
 
 ## [4.2.0] - 2026-11-15
 
