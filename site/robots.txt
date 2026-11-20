@@ -1,0 +1,7 @@
+---
+# Rendered by Jekyll so the sitemap URL follows site.url in _config.yml.
+---
+User-agent: *
+Allow: /
+
+Sitemap: {{ '/sitemap.xml' | absolute_url }}

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  {%- assign page_title = page.title | default: site.title -%}
+  {%- unless page_title contains site.title -%}{%- assign page_title = page_title | append: ' · ' | append: site.title -%}{%- endunless -%}
+  <title>{{ page_title }}</title>
+  <meta name="description" content="{{ page.description | default: site.description }}">
+  {% if page.keywords %}
+  <meta name="keywords" content="{{ page.keywords | join: ', ' }}">
+  {% endif %}
+
+  {%- comment %}
+    Everything is linked relatively so the site works both at a custom
+    domain and under <user>.github.io/<repo>/ without a baseurl:
+    up_path climbs out of the current directory back to the site root,
+    rest is the current path with the leading "/<lang>" removed.
+  {%- endcomment %}
+  {%- assign up = page.dir | split: "/" | size | minus: 1 -%}
+  {%- assign up_path = "" -%}
+  {%- for i in (1..up) -%}{%- assign up_path = up_path | append: "../" -%}{%- endfor -%}
+  {%- assign other = "lv" -%}
+  {%- if page.lang == "lv" -%}{%- assign other = "en" -%}{%- endif -%}
+  {%- assign rest = page.url | remove_first: "/" | remove_first: page.lang -%}
+  {%- capture alt_href -%}{{ up_path }}{{ other }}{{ rest }}{%- endcapture -%}
+
+  <link rel="stylesheet" href="{{ up_path }}assets/style.css">
+  {%- if site.url and site.url != "" %}
+  <link rel="canonical" href="{{ page.url | absolute_url }}">
+  <link rel="alternate" hreflang="{{ page.lang }}" href="{{ page.url | absolute_url }}">
+  <link rel="alternate" hreflang="{{ other }}" href="{{ other | prepend: '/' | append: rest | absolute_url }}">
+  {%- assign og_locale = "en_US" -%}
+  {%- assign og_locale_alt = "lv_LV" -%}
+  {%- if page.lang == "lv" -%}
+    {%- assign og_locale = "lv_LV" -%}
+    {%- assign og_locale_alt = "en_US" -%}
+  {%- endif %}
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{ site.title }}">
+  <meta property="og:title" content="{{ page.title | default: site.title }}">
+  <meta property="og:description" content="{{ page.description | default: site.description }}">
+  <meta property="og:url" content="{{ page.url | absolute_url }}">
+  <meta property="og:locale" content="{{ og_locale }}">
+  <meta property="og:locale:alternate" content="{{ og_locale_alt }}">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": {{ site.title | jsonify }},
+    "description": {{ site.description | jsonify }},
+    "url": {{ "/" | absolute_url | jsonify }},
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "macOS 12 or later",
+    "inLanguage": ["en", "lv"],
+    "license": "https://spdx.org/licenses/GPL-2.0-or-later.html",
+    "downloadUrl": "https://github.com/WARP-LAB/Pareizrakstiba/releases",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    }
+  }
+  </script>
+  {%- endif %}
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="{{ up_path }}{{ page.lang }}/">{{ site.title }}</a>
+    {% include lang-switcher.html href=alt_href lang=other %}
+  </header>
+  <main>
+{{ content }}
+  </main>
+  <footer class="site-footer">
+    <p><a href="https://github.com/WARP-LAB/Pareizrakstiba">See source code</a> · GPL-2.0-or-later · Copyright (C) 2008-2026 kroko (Reinis Adovičs)</p>
+  </footer>
+</body>
+</html>

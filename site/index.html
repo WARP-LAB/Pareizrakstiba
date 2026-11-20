@@ -1,0 +1,46 @@
+---
+# Language chooser: redirect only, so keep it out of search results.
+sitemap: false
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="noindex, follow">
+  <title>Pareizrakstība</title>
+  <meta name="description" content="Pareizrakstība is service that adds support for system-wide spell checking in the Latvian language for the macOS operating system.">
+  <link rel="stylesheet" href="assets/style.css">
+  <script>
+    // GitHub Pages has no server-side redirects and no language negotiation,
+    // so choose here:
+    //   1. a language the visitor picked earlier (switcher click) wins;
+    //   2. otherwise Latvian only when the browser's primary language is
+    //      Latvian (lv, lv-LV, ...);
+    //   3. everything else gets English.
+    (function () {
+      var lang = null;
+      try { lang = localStorage.getItem('pareizrakstiba.lang'); } catch (e) {}
+
+      if (lang !== 'lv' && lang !== 'en') {
+        var preferred = (navigator.languages && navigator.languages[0]) ||
+                        navigator.language || '';
+        lang = /^lv(?:[-_]|$)/i.test(preferred) ? 'lv' : 'en';
+      }
+
+      location.replace(lang + '/');
+    })();
+  </script>
+</head>
+<body>
+  <main>
+    <h1>Pareizrakstība</h1>
+    <p>Latvian spellcheck for the macOS operating system.</p>
+    <p class="lang-choices">
+      <a href="en/" hreflang="en" lang="en">English</a>
+      <a href="lv/" hreflang="lv" lang="lv">Latviešu</a>
+    </p>
+  </main>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{%- comment %}
+  Language switcher: one link to the same page in the other language.
+  The layout passes href (already relative and pointed at the mirrored
+  path, e.g. ../lv/install.html) and lang ("en" or "lv").
+
+  Clicking it is what records the visitor's preference - the chooser at /
+  reads that value on the next visit. Browsing a page alone must not set
+  it, or a single shared link would pin the language forever.
+{%- endcomment %}
+{%- assign label = "Latviešu" -%}
+{%- if include.lang == "en" -%}{%- assign label = "English" -%}{%- endif -%}
+<nav class="lang-switcher" aria-label="Language">
+  <a href="{{ include.href }}"
+     hreflang="{{ include.lang }}"
+     lang="{{ include.lang }}"
+     onclick="try { localStorage.setItem('pareizrakstiba.lang', '{{ include.lang }}'); } catch (e) {}">{{ label }}</a>
+</nav>

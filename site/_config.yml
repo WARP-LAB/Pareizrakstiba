@@ -1,0 +1,53 @@
+# site/_config.yml
+# Configuration for the public site in site/, built and deployed by
+# .github/workflows/pages.yml. Pages live in en/ and lv/; the directory
+# name doubles as the page language.
+
+title: Pareizrakstība
+description: Latvian spellcheck for the macOS operating system.
+lang: en # default language, used when a page has no lang of its own
+
+# Absolute URL of the published site. Used only for canonical and hreflang
+# links - everything else is relative, so the same files work at a custom
+# domain and at <user>.github.io/<repo>/ without touching baseurl.
+# Project pages: https://warp-lab.github.io/Pareizrakstiba
+url: 'https://warp-lab.github.io/Pareizrakstiba'
+baseurl: ''
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+
+# jekyll-sitemap is part of the github-pages gem, so the CI build picks it
+# up without extra dependencies. Emits /sitemap.xml from site.url.
+plugins:
+  - jekyll-sitemap
+
+# jekyll-relative-links (also part of github-pages) rewrites relative links
+# in markdown to root-absolute ones, e.g. ../media/x.png -> /media/x.png.
+# That only works when baseurl matches the deploy path, which this site
+# deliberately does not rely on, so keep it off and author paths relative
+# to the page (../media/x.png) exactly as the layout does.
+relative_links:
+  enabled: false
+
+# Not part of the published site.
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+
+# Every page under en/ and lv/ gets the shared layout and its language.
+defaults:
+  - scope:
+      path: en
+    values:
+      layout: default
+      lang: en
+  - scope:
+      path: lv
+    values:
+      layout: default
+      lang: lv
