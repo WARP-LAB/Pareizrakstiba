@@ -10,8 +10,8 @@ lang: en # default language, used when a page has no lang of its own
 # Absolute URL of the published site. Used only for canonical and hreflang
 # links - everything else is relative, so the same files work at a custom
 # domain and at <user>.github.io/<repo>/ without touching baseurl.
-# Project pages: https://warp-lab.github.io/Pareizrakstiba
-url: 'https://warp-lab.github.io/Pareizrakstiba'
+# Project pages: https://warp-lab.github.io/pareizrakstiba
+url: 'https://warp-lab.github.io/pareizrakstiba'
 baseurl: ''
 
 markdown: kramdown

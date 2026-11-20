@@ -23,12 +23,12 @@ Serviss, kas pievieno sistēmas līmeņa latviešu valodas pareizrakstības pār
 
 ## Instalēšana
 
-- [Lejupielādē jaunāko laidienu](https://github.com/WARP-LAB/Pareizrakstiba/releases/latest/download/Pareizrakstiba.dmg), vai skati [izmaiņu piezīmes](https://github.com/WARP-LAB/Pareizrakstiba/releases/latest/), kur zem _Assets_ atradīsi DMG
+- [Lejupielādē jaunāko laidienu](https://github.com/WARP-LAB/pareizrakstiba/releases/latest/download/Pareizrakstiba.dmg), vai skati [izmaiņu piezīmes](https://github.com/WARP-LAB/pareizrakstiba/releases/latest/), kur zem _Assets_ atradīsi DMG
 - Atver DMG failu, palaid instalētāju `Pareizrakstiba.pkg`, seko norādēm
 
 ## Atinstalēšana
 
-- [Lejupielādē jaunāko laidienu](https://github.com/WARP-LAB/Pareizrakstiba/releases/latest/download/Pareizrakstiba.dmg)
+- [Lejupielādē jaunāko laidienu](https://github.com/WARP-LAB/pareizrakstiba/releases/latest/download/Pareizrakstiba.dmg)
 - Atver DMG failu, palaid `Uninstall Pareizrakstiba`, seko norādēm
 
 ## Lietošana
@@ -48,8 +48,8 @@ Instalēšanas laikā Pareizrakstība noņem visas iepriekšējās tās versijas
 
 ## Vecāku OS versiju atbalsts
 
-- macOS 10.13+ Universal [v4.1.0](https://github.com/WARP-LAB/Pareizrakstiba/releases/tag/v4.1.0)
-- Mac OS X 10.4 līdz Mac OS X 10.9 Intel 32 un 64 bitu [Pareizrakstiba-Archive](https://github.com/WARP-LAB/Pareizrakstiba-Archive)
+- macOS 10.13+ Universal [v4.1.0](https://github.com/WARP-LAB/pareizrakstiba/releases/tag/v4.1.0)
+- Mac OS X 10.4 līdz Mac OS X 10.9 Intel 32 un 64 bitu [Pareizrakstiba-Archive](https://github.com/WARP-LAB/pareizrakstiba-Archive)
 
 ## Pareizrakstības konfigurēšana no CLI
 
@@ -68,7 +68,7 @@ defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool FALSE
 
 ## Versiju vēsture
 
-Skati [CHANGELOG.md](https://github.com/WARP-LAB/Pareizrakstiba/blob/master/CHANGELOG.md).
+Skati [CHANGELOG.md](https://github.com/WARP-LAB/pareizrakstiba/blob/master/CHANGELOG.md).
 
 ## Izmanto
 

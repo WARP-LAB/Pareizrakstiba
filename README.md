@@ -12,12 +12,12 @@ Service that adds support for system-wide spell checking in the Latvian language
 
 ### Installation
 
-- [Download latest release](https://github.com/WARP-LAB/Pareizrakstiba/releases/latest/download/Pareizrakstiba.dmg), or here are [release notes](https://github.com/WARP-LAB/Pareizrakstiba/releases/latest/) and you can find DMG under Assets.
+- [Download latest release](https://github.com/WARP-LAB/pareizrakstiba/releases/latest/download/Pareizrakstiba.dmg), or here are [release notes](https://github.com/WARP-LAB/pareizrakstiba/releases/latest/) and you can find DMG under Assets.
 - Mount DMG and run `Pareizrakstiba.pkg` installer, it will guide you through the process.
 
 ### Uninstallation
 
-- [Download latest release](https://github.com/WARP-LAB/Pareizrakstiba/releases/latest/download/Pareizrakstiba.dmg)
+- [Download latest release](https://github.com/WARP-LAB/pareizrakstiba/releases/latest/download/Pareizrakstiba.dmg)
 - Mount DMG and run `Uninstall Pareizrakstiba`, it will guide you through the process.
 
 ### Usage
@@ -38,8 +38,8 @@ Pareizrakstība does not check for CheckSpell and cocoAspell (or pspell). Histor
 
 ### Older OS support
 
-- macOS 10.13+ Universal [v4.1.0](https://github.com/WARP-LAB/Pareizrakstiba/releases/tag/v4.1.0)
-- Mac OS X 10.4 to Mac OS X 10.9 Intel 32 & 64-bit [Pareizrakstiba-Archive](https://github.com/WARP-LAB/Pareizrakstiba-Archive)
+- macOS 10.13+ Universal [v4.1.0](https://github.com/WARP-LAB/pareizrakstiba/releases/tag/v4.1.0)
+- Mac OS X 10.4 to Mac OS X 10.9 Intel 32 & 64-bit [Pareizrakstiba-Archive](https://github.com/WARP-LAB/pareizrakstiba-Archive)
 
 ### Spelling configuration via CLI
 
@@ -64,7 +64,7 @@ defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool FALSE
 
 ```zsh
 # clone
-git clone --recurse-submodules git@github.com:WARP-LAB/Pareizrakstiba.git
+git clone --recurse-submodules git@github.com:WARP-LAB/pareizrakstiba.git
 
 # at this point you can pull in and configure latest hunspell (optional)
 # read Hunspell submodule management

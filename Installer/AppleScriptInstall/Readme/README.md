@@ -1,18 +1,18 @@
 # Pareizrakstība
 
-Pareizrakstība - Latvian spellcheck for macOS operating system.  
+Pareizrakstība - Latvian spellcheck for macOS operating system.
 Service that adds support for system wide spellchecking in Latvian language.
 
 ## Requirements
 
-* Built for macOS 10.13+ (it could be built for older deployment targets).  
+* Built for macOS 10.13+ (it could be built for older deployment targets).
 * Tested on 10.15.5. and 10.13.6
 * 64-bit only.
-* For yet older OS versions, see [Pareizrakstiba-Archive](https://github.com/WARP-LAB/Pareizrakstiba-Archive).
+* For yet older OS versions, see [Pareizrakstiba-Archive](https://github.com/WARP-LAB/pareizrakstiba-Archive).
 
 ## Installation
 
-This application is not signed as the developer is not willing to pay the Apple fee[1].  
+This application is not signed as the developer is not willing to pay the Apple fee[1].
 
 If you wish to use this then before running *Installer* you have enable the possibility of running unsigned apps on macOS.
 
@@ -27,7 +27,7 @@ If you wish to use this then before running *Installer* you have enable the poss
 	```
 * You will be asked for administrator password, enter it.
 
-* Visit *System Preferences : Security & Privacy : General* 
+* Visit *System Preferences : Security & Privacy : General*
 
 * Check that *Anywhere* is selected for *Allow apps downloaded from*
 
