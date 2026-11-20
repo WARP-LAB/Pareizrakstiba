@@ -135,6 +135,11 @@ VERSION=$(/usr/libexec/PlistBuddy -c "Print :CFBundleShortVersionString" "${BUIL
 PKG_OUT="${OUT_DIR}/Pareizrakstiba.pkg"
 DMG_OUT="${OUT_DIR}/Pareizrakstiba.dmg"
 
+# Start clean: an aborted run leaves work/ behind, and cp -R into an existing
+# bundle directory nests the new bundle inside the old one. Old outputs go
+# too, so a failed run cannot leave a stale .pkg/.dmg that looks current
+rm -rf "${WORK_DIR}" "${PKG_OUT}" "${DMG_OUT}"
+
 echo "==> Staging payload (${SERVICE_NAME}, version ${VERSION})"
 PAYLOAD_DIR="${WORK_DIR}/payload"
 mkdir -p "${PAYLOAD_DIR}"
