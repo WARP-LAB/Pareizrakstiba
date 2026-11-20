@@ -11,11 +11,14 @@
 #   ./make-installer.sh --sign yes            # signed (needs identities)
 #   ./make-installer.sh --notarize yes        # signed + notarized (implies sign)
 #
-# Signing identities (env vars, only needed when the toggles are on):
-#   APP_SIGN_IDENTITY         Developer ID Application identity,
+# Signing settings (only needed when the toggles are on). Each comes from the
+# environment if set there, otherwise from the resolved Release build
+# settings, i.e. Config/Local.xcconfig (see Config/Local.xcconfig.example):
+#   CODE_SIGN_IDENTITY        Developer ID Application identity,
 #                             signs the .service bundle and the .dmg
 #   INSTALLER_SIGN_IDENTITY   Developer ID Installer identity, signs the .pkg
 #   NOTARY_PROFILE            notarytool keychain profile name
+#                             (default: notarytool)
 #
 # Output lives in ../../dmg/ (gitignored): the final .pkg, the final .dmg,
 # and a work/ dir with intermediates.
@@ -32,9 +35,9 @@ SERVICE_NAME="Pareizrakstiba.service"
 SERVICE_BUNDLE_ID="lv.warp.Pareizrakstiba"
 PKG_ID="lv.warp.Pareizrakstiba.service"
 
-APP_SIGN_IDENTITY="${APP_SIGN_IDENTITY:-}"
+CODE_SIGN_IDENTITY="${CODE_SIGN_IDENTITY:-}"
 INSTALLER_SIGN_IDENTITY="${INSTALLER_SIGN_IDENTITY:-}"
-NOTARY_PROFILE="${NOTARY_PROFILE:-notarytool}"
+NOTARY_PROFILE="${NOTARY_PROFILE:-}"
 
 SIGN=no
 NOTARIZE=no
@@ -54,7 +57,7 @@ while [ $# -gt 0 ]; do
 			;;
 		--notarize=?*) NOTARIZE=${1#*=}; shift ;;
 		-h | --help)
-			sed -n '2,20p' "${BASH_SOURCE[0]}" | sed 's/^# \{0,1\}//'
+			sed -n '2,24p' "${BASH_SOURCE[0]}" | sed 's/^# \{0,1\}//'
 			exit 0
 			;;
 		--)
@@ -87,15 +90,39 @@ if [ "${NOTARIZE}" = yes ] && [ "${SIGN}" = no ]; then
 fi
 
 if [ "${SIGN}" = yes ]; then
-	if [ -z "${APP_SIGN_IDENTITY}" ]; then
-		echo "error: --sign yes needs APP_SIGN_IDENTITY set in the environment" >&2
-		exit 1
-	fi
-	if [ -z "${INSTALLER_SIGN_IDENTITY}" ]; then
-		echo "error: --sign yes needs INSTALLER_SIGN_IDENTITY set in the environment" >&2
-		exit 1
-	fi
+	# Ask Xcode rather than parsing Local.xcconfig: this resolves includes,
+	# [config=Release] conditions and $(...) references the same way the build does
+	echo "==> Resolving signing settings (environment, else Release build settings)"
+	RELEASE_SETTINGS=$(xcrun xcodebuild -project "${REPO_ROOT}/Pareizrakstiba.xcodeproj" \
+		-target Pareizrakstiba -configuration Release -showBuildSettings 2>/dev/null)
+	release_setting() {
+		printf '%s\n' "${RELEASE_SETTINGS}" | sed -n "s/^ *$1 = //p" | head -n 1
+	}
+	[ -n "${CODE_SIGN_IDENTITY}" ] || CODE_SIGN_IDENTITY=$(release_setting CODE_SIGN_IDENTITY)
+	[ -n "${INSTALLER_SIGN_IDENTITY}" ] || INSTALLER_SIGN_IDENTITY=$(release_setting INSTALLER_SIGN_IDENTITY)
+	[ -n "${NOTARY_PROFILE}" ] || NOTARY_PROFILE=$(release_setting NOTARY_PROFILE)
+
+	case "${CODE_SIGN_IDENTITY}" in
+		"Developer ID Application: "*) ;;
+		*)
+			echo "error: CODE_SIGN_IDENTITY is '${CODE_SIGN_IDENTITY}', expected a Developer ID Application" >&2
+			echo "       identity (option B in Config/Local.xcconfig, or set it in the environment)" >&2
+			exit 1
+			;;
+	esac
+	case "${INSTALLER_SIGN_IDENTITY}" in
+		"Developer ID Installer: "*) ;;
+		*)
+			echo "error: INSTALLER_SIGN_IDENTITY is '${INSTALLER_SIGN_IDENTITY}', expected a Developer ID Installer" >&2
+			echo "       identity (set it in Config/Local.xcconfig or in the environment)" >&2
+			exit 1
+			;;
+	esac
+	echo "    CODE_SIGN_IDENTITY      = ${CODE_SIGN_IDENTITY}"
+	echo "    INSTALLER_SIGN_IDENTITY = ${INSTALLER_SIGN_IDENTITY}"
 fi
+NOTARY_PROFILE="${NOTARY_PROFILE:-notarytool}"
+[ "${NOTARIZE}" = no ] || echo "    NOTARY_PROFILE          = ${NOTARY_PROFILE}"
 
 echo "==> Building Release .service (via build.sh)"
 "${BUILD_SH}" -c Release -z no
@@ -118,8 +145,8 @@ cp -R "${BUILT_SERVICE}" "${PAYLOAD_DIR}/${SERVICE_NAME}"
 rm -rf "${BUILT_SERVICE}"
 
 if [ "${SIGN}" = yes ]; then
-	echo "==> Signing ${SERVICE_NAME} (${APP_SIGN_IDENTITY})"
-	codesign --force --options runtime --sign "${APP_SIGN_IDENTITY}" \
+	echo "==> Signing ${SERVICE_NAME} (${CODE_SIGN_IDENTITY})"
+	codesign --force --options runtime --timestamp --sign "${CODE_SIGN_IDENTITY}" \
 		"${PAYLOAD_DIR}/${SERVICE_NAME}"
 	codesign --verify --strict "${PAYLOAD_DIR}/${SERVICE_NAME}"
 fi
@@ -132,8 +159,8 @@ echo "==> Compiling Uninstall app"
 osacompile -o "${WORK_DIR}/Uninstall Pareizrakstiba.app" "${SCRIPT_DIR}/Uninstall.applescript"
 
 if [ "${SIGN}" = yes ]; then
-	echo "==> Signing Uninstall app (${APP_SIGN_IDENTITY})"
-	codesign --force --options runtime --sign "${APP_SIGN_IDENTITY}" \
+	echo "==> Signing Uninstall app (${CODE_SIGN_IDENTITY})"
+	codesign --force --options runtime --timestamp --sign "${CODE_SIGN_IDENTITY}" \
 		"${WORK_DIR}/Uninstall Pareizrakstiba.app"
 	codesign --verify --strict "${WORK_DIR}/Uninstall Pareizrakstiba.app"
 fi
@@ -186,14 +213,21 @@ hdiutil create -volname "Pareizrakstība ${VERSION}" \
 	-srcfolder "${DMG_STAGE}" -ov -format UDZO "${DMG_OUT}"
 
 if [ "${SIGN}" = yes ]; then
-	echo "==> Signing DMG (${APP_SIGN_IDENTITY})"
-	codesign --force --sign "${APP_SIGN_IDENTITY}" "${DMG_OUT}"
+	echo "==> Signing DMG (${CODE_SIGN_IDENTITY})"
+	codesign --force --timestamp --sign "${CODE_SIGN_IDENTITY}" "${DMG_OUT}"
 fi
 
 if [ "${NOTARIZE}" = yes ]; then
 	echo "==> Notarizing DMG (${NOTARY_PROFILE})"
 	xcrun notarytool submit "${DMG_OUT}" --keychain-profile "${NOTARY_PROFILE}" --wait
 	xcrun stapler staple "${DMG_OUT}"
+
+	# What a downloader's Mac will check: fail here, not after a release
+	echo "==> Checking Gatekeeper acceptance"
+	xcrun stapler validate "${PKG_OUT}"
+	xcrun stapler validate "${DMG_OUT}"
+	spctl --assess --type install --verbose "${PKG_OUT}"
+	spctl --assess --type open --context context:primary-signature --verbose "${DMG_OUT}"
 fi
 
 rm -rf "${WORK_DIR}"

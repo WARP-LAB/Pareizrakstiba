@@ -19,9 +19,9 @@
 
 // ----------------
 // OPTION A
-// Sign Debug and Release with your development certificate. Enough when
-// shipping through Installer/PkgInstall/make-installer.sh, which re-signs
-// the bundle with Developer ID + hardened runtime anyway.
+// Sign Debug and Release with your development certificate. For a signed
+// installer, Installer/PkgInstall/make-installer.sh then needs
+// CODE_SIGN_IDENTITY (Developer ID Application) from the environment.
 //   CODE_SIGN_STYLE = Automatic
 //   CODE_SIGN_IDENTITY = Apple Development
 
@@ -34,3 +34,16 @@
 //   CODE_SIGN_IDENTITY[config=Release] = Developer ID Application: Name or Company (ABCDE12345)
 //   ENABLE_HARDENED_RUNTIME[config=Release] = YES
 //   OTHER_CODE_SIGN_FLAGS[config=Release] = --timestamp
+
+// ----------------
+// INSTALLER
+// Read only by Installer/PkgInstall/make-installer.sh (--sign yes /
+// --notarize yes); Xcode ignores these. Together with option B's Release
+// CODE_SIGN_IDENTITY, which signs the .service, the uninstaller and the
+// .dmg. Environment variables of the same names override them.
+// NOTARY_PROFILE names a keychain profile, stored once with
+//   xcrun notarytool store-credentials notarytool --apple-id <apple-id> --team-id ABCDE12345
+// Never put a password or API key here: build settings end up in build
+// logs and in every build script's environment.
+//   INSTALLER_SIGN_IDENTITY = Developer ID Installer: Name or Company (ABCDE12345)
+//   NOTARY_PROFILE = notarytool

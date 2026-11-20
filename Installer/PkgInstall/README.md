@@ -24,19 +24,36 @@ built bundle.
 
 ## Signing and notarization
 
-Off by default; turn on when a Developer subscription is available.
-Identities come from the environment:
+Off by default. Each setting comes from the environment if set there,
+otherwise from the resolved Release build settings, i.e.
+`Config/Local.xcconfig` (option B plus the installer keys, see
+`Config/Local.xcconfig.example`), so the identity Xcode signs with is
+the one the installer uses:
 
-| Variable | Used for |
+| Setting | Used for |
 | --- | --- |
-| `APP_SIGN_IDENTITY` | Developer ID **Application**: signs the `.service` bundle and the `.dmg` |
+| `CODE_SIGN_IDENTITY` | Developer ID **Application**: signs the `.service` bundle, the uninstaller and the `.dmg` |
 | `INSTALLER_SIGN_IDENTITY` | Developer ID **Installer**: signs the `.pkg` |
 | `NOTARY_PROFILE` | `notarytool` keychain profile name (default: `notarytool`) |
 
-Example:
+None of these are secrets. The notarization credentials live in the
+keychain, stored once with:
 
 ```sh
-APP_SIGN_IDENTITY="Developer ID Application: WARP (TEAMID)" \
+xcrun notarytool store-credentials notarytool --apple-id <apple-id> --team-id <TEAMID>
+```
+
+Never put a password or API key in `Local.xcconfig`: build settings
+end up in build logs and in every build script's environment.
+
+With `--notarize yes` the run ends by validating the stapled tickets and
+asking Gatekeeper (`spctl`) to accept the `.pkg` and `.dmg`, so a file
+that would be rejected on a downloader's Mac fails the run instead.
+
+Environment override example:
+
+```sh
+CODE_SIGN_IDENTITY="Developer ID Application: WARP (TEAMID)" \
 INSTALLER_SIGN_IDENTITY="Developer ID Installer: WARP (TEAMID)" \
 NOTARY_PROFILE="notarytool" \
 ./make-installer.sh --notarize yes
@@ -91,5 +108,5 @@ pkgutil --pkg-info lv.warp.Pareizrakstiba.service
   asks for an administrator password only when the chosen destination
   needs one (the disk → `/Library/Services`); a "this user only" install
   runs unprivileged, including its scripts.
-- The `.service` is signed with hardened runtime (`--options runtime`) so
-  notarization accepts it.
+- The `.service` is signed with hardened runtime (`--options runtime`) and
+  a secure timestamp (`--timestamp`) so notarization accepts it.
