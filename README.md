@@ -12,12 +12,12 @@ Service that adds support for system-wide spell checking in the Latvian language
 
 ### Installation
 
-- [Download latest release](https://github.com/WARP-LAB/Pareizrakstiba/releases/latest/download/Pareizrakstiba.dmg), here are [latest release notes](https://github.com/WARP-LAB/Pareizrakstiba/releases/latest/)
+- [Download latest release](https://github.com/WARP-LAB/Pareizrakstiba/releases/latest/download/Pareizrakstiba.dmg), or here are [release notes](https://github.com/WARP-LAB/Pareizrakstiba/releases/latest/) and you can find DMG under Assets.
 - Mount DMG and run `Pareizrakstiba.pkg` installer, it will guide you through the process.
 
 ### Uninstallation
 
-- [Download latest release](https://github.com/WARP-LAB/Pareizrakstiba/releases/latest/download/Pareizrakstiba.dmg), can check [release notes](https://github.com/WARP-LAB/Pareizrakstiba/releases/latest/)
+- [Download latest release](https://github.com/WARP-LAB/Pareizrakstiba/releases/latest/download/Pareizrakstiba.dmg)
 - Mount DMG and run `Uninstall Pareizrakstiba`, it will guide you through the process.
 
 ### Usage
