@@ -64,6 +64,7 @@ NOTARY_PROFILE="notarytool" \
 | File | Purpose |
 | --- | --- |
 | `make-installer.sh` | The whole pipeline: build → payload → pkg → dmg, with sign/notarize toggles. The built `.service` is consumed into the payload and removed from `build/`, so no bare bundle is left. After `pkgbuild` it strips the `auth="root"` attribute that `pkgbuild` hardcodes into the PackageInfo (expand → `sed` → flatten), so an admin password is only asked when the destination needs root |
+| `validate-installer.sh` | Release check of a DMG, by default `dmg/Pareizrakstiba.dmg`, or a path such as a DMG downloaded from a GitHub release. Mounts it and checks the DMG, the `.pkg` inside it, the `.service` in the package payload and the uninstaller: Developer ID signatures, secure timestamps, hardened runtime, stapled tickets, Gatekeeper acceptance as notarized, one team throughout. One PASS/FAIL line per check, non-zero exit if any fails |
 | `component.plist` | Component options; `BundleIsRelocatable` is what enables the "all users / this user" destination choice in Installer.app (not the default on macOS 27+) |
 | `dist.xml` | Distribution definition (`@VERSION@` is filled from the built bundle at build time) |
 | `scripts/preinstall` | Preflight: stop a running spell server, remove previous installs from `/Library/Services` (only when running as root) **and** `~/Library/Services` (always), guarded `pbs -flush` |
